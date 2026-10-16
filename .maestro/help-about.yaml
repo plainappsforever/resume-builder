@@ -97,7 +97,7 @@ appId: ${APP_ID}
       TARGET: about-privacy-url
 - assertVisible:
     id: about-privacy-url
-    text: "https://taulon.org/apps/resume-builder/privacy"
+    text: "https://plainapps.dfdsfdsfsdf.workers.dev/apps/resume-builder/privacy"
 - runFlow:
     file: subflows/scroll-center.yaml
     env:

@@ -12,8 +12,8 @@ import { Card, Heading, LinkButton, Screen } from '@/components/ui';
 import { LICENCES, type Licence } from '@/data/licences.generated';
 import { t } from '@/i18n';
 
-/** The online privacy policy (owner-chosen address, RELEASE_KIT D6; the page itself is published by the taulon-site job). */
-export const PRIVACY_URL = 'https://taulon.org/apps/resume-builder/privacy';
+/** The online privacy policy (owner-chosen address, RELEASE_KIT D6; the page itself is published on the Plain Apps site). */
+export const PRIVACY_URL = 'https://plainapps.dfdsfdsfsdf.workers.dev/apps/resume-builder/privacy';
 
 export default function AboutScreen() {
   return (
