@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import { documentFileName } from '@/engine/filenames';
+test('fn', () => {
+  const names = ['Jürgen Groß', 'Zoë Ångström-Ñúñez', '李小龙', 'Anna & Co', 'O\'Neil  Smith', 'Ægir Þór Øster', 'Łukasz Żółć', 'Ⅻ Ｗide', 'Anna/../../etc', 'CON', '.hidden', 'a'.repeat(120)];
+  const out = names.flatMap((n) => (['en', 'de'] as const).map((language) => [n, language, documentFileName({ fullName: n, company: 'Müller & Söhne GmbH / Köln', language, kind: 'resume', ext: 'pdf' } as any), documentFileName({ fullName: n, company: '', language, kind: 'cover', ext: 'pdf' } as any)]));
+  fs.writeFileSync(`${process.env.RB_S}/fn.json`, JSON.stringify(out));
+});

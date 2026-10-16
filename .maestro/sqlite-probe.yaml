@@ -1,0 +1,19 @@
+# P3.5 device check: the write queue / withRead rollback probe on the real expo-sqlite (dev route debug/probe).
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: debug-probe
+- tapOn:
+    id: debug-probe
+- extendedWaitUntil:
+    visible:
+      id: probe-screen
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "PROBE PASS"
+    timeout: 60000

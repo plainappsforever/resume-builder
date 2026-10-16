@@ -1,0 +1,55 @@
+# P5 (F6, F7, A1 on the device, A9): from a resume, Export → Share PDF opens the share sheet (2 taps); the PDF was read
+# back with pdf.js in the app's WebView and the result says how many words and lines came back in the right order.
+# Precondition: the EN example (version 1 = General). Dev label `export-debug` shows pages/bytes/times.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, all \\d+ lines in the right order, 1 page, \\d+ KB\\."
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: export-debug
+- assertVisible:
+    id: export-debug
+    text: "EXPORT pages=1 bytes=\\d+ printMs=\\d+ readbackMs=\\d+ totalMs=\\d+ pass=true"
+- copyTextFrom:
+    id: export-debug
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: readback-show-text
+- tapOn:
+    id: readback-show-text
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: readback-text
+- assertVisible:
+    text: ".*Alex Morgan.*"

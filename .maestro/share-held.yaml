@@ -1,0 +1,67 @@
+# v1.1 F4 (REVIEW_V1 #4, D92) + F1 (D89): a PDF whose read-back did not pass is NOT handed to the share sheet in the same tap.
+# Precondition: the EN example plus a link longer than a line (dev fixture broken-link): the link breaks, so the read-back
+# fails with "Your link was not read as one piece". Share PDF shows the held card and the result; "Share anyway" opens the
+# sheet; "Change template" goes to the Design tab.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: broken-link
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- extendedWaitUntil:
+    visible:
+      id: export-held
+    timeout: 60000
+- assertNotVisible:
+    id: PopoverDismissRegion
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, \\d+ of \\d+ lines in the right order.*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: readback-detail-0
+- assertVisible:
+    id: readback-detail-0
+    text: "Your link was not read as one piece: .*example.org/portfolio-and-case-studies.*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: export-share-anyway
+- tapOn:
+    id: export-share-anyway
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: export-share
+- extendedWaitUntil:
+    visible:
+      id: export-held
+    timeout: 60000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: export-change-design
+- tapOn:
+    id: export-change-design
+- extendedWaitUntil:
+    visible:
+      id: tab-body-design
+    timeout: 15000

@@ -1,0 +1,30 @@
+# Waits for the system share sheet the previous step opened and closes it without sharing (iOS: tap outside it;
+# Android: Back). Env WHAT = a text the sheet shows (iOS: the file kind line, e.g. "PDF Document").
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible:
+            id: PopoverDismissRegion
+          timeout: 30000
+      - assertVisible:
+          text: "${WHAT}.*"
+      - tapOn:
+          id: PopoverDismissRegion
+          point: 50%,11%
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible:
+            text: "(Sharing|Teilen|Share).*"
+          timeout: 30000
+      - back
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000

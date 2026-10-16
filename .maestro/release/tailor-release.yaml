@@ -1,0 +1,74 @@
+# P7 (F8, F9 on a RELEASE build): paste a job ad on the Job tab of the example's second resume, "route planning" is Missing, the
+# hidden volunteer entry is offered, one tap includes it, the keyword is Found; the Check tab opens. No dev links. Fresh install.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-2
+    timeout: 40000
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "2"
+      TAB: job
+- extendedWaitUntil:
+    visible:
+      id: job-ad
+    timeout: 15000
+- tapOn:
+    id: job-ad
+    point: 95%,95%
+- eraseText: 600
+- inputText: Requirements - route planning, Excel and Power BI
+- runFlow: ../subflows/kb.yaml
+- extendedWaitUntil:
+    visible:
+      id: kw-status-route-planning
+    timeout: 15000
+- assertVisible:
+    id: kw-status-route-planning
+    text: Missing
+- assertVisible:
+    id: job-summary
+    text: "Found \\d+ · Variants \\d+ · Missing \\d+ of the \\d+ shown"
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: kw-status-excel
+- assertVisible:
+    id: kw-status-excel
+    text: Found
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: kw-include-route-planning-0
+- tapOn:
+    id: kw-include-route-planning-0
+- extendedWaitUntil:
+    visible:
+      id: kw-status-route-planning
+      text: Found
+    timeout: 15000
+- assertNotVisible:
+    id: kw-include-route-planning-0
+- scrollUntilVisible:
+    element:
+      id: version-tabs-check
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: version-tabs-check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 20000

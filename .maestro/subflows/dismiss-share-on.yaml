@@ -1,0 +1,31 @@
+# Like dismiss-share.yaml, for screens other than a resume: waits for the system share sheet the previous step opened and
+# closes it without sharing (iOS: tap outside it; Android: Back), then waits for env SCREEN (a testID). Env WHAT = text the
+# iOS sheet shows (a regex; ".*" when the file kind line is not worth checking).
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible:
+            id: PopoverDismissRegion
+          timeout: 30000
+      - assertVisible:
+          text: "${WHAT}.*"
+      - tapOn:
+          id: PopoverDismissRegion
+          point: 50%,11%
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible:
+            text: "(Sharing|Teilen|Share).*"
+          timeout: 30000
+      - back
+- extendedWaitUntil:
+    visible:
+      id: ${SCREEN}
+    timeout: 15000

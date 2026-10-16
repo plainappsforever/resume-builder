@@ -1,0 +1,41 @@
+# Scrolls a screen back to its top (swipe down; scrollUntilVisible only goes down, and on iOS a scrolled-up segmented control
+# sits under the header).
+appId: ${APP_ID}
+---
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+- swipe:
+    direction: DOWN
+    duration: 250
+# On iOS a swipe that starts on a long text field can focus it (keyboard up): close it again so the next tap lands.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          point: 99%,35%

@@ -1,0 +1,4 @@
+{"en-logistics-coordinator": ["freight forwarding", "customs clearance", "atlas", "incoterms", "sap tm", "tms", "excel", "pivot tables", "vlookup", "logistics", "polish", "customs"],
+ "en-frontend": ["react", "typescript", "jest", "playwright", "html", "css", "wcag", "rest apis", "graphql", "git", "ci/cd", "github actions", "accessibility", "storybook", "figma", "node.js", "postgresql", "c#", ".net"],
+ "de-mfa": ["medizinische fachangestellte", "abrechnung", "ebm", "goä", "medistar", "praxissoftware", "blutentnahmen", "ekg", "impfungen", "wundversorgung", "teamfähigkeit", "terminvergabe", "hygiene"],
+ "de-it-admin": ["windows server", "active directory", "powershell", "linux", "vmware", "microsoft 365", "exchange online", "veeam", "vlan", "firewall", "vpn", "itil", "fachinformatiker", "systemintegration", "systemadministration", "netzwerktechnik", "it-support"]}

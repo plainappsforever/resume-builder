@@ -1,0 +1,54 @@
+# SPEC section 7 flow 3 / A3: add a job to the master -> every version shows "new content"; the new entry is included and
+# badged "New" in the version; "Move to top" puts it first. Precondition: the EN example (10 entries, so the new one is 11).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- assertNotVisible:
+    id: version-new-1
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: section-row-1
+- tapOn:
+    id: section-row-1
+- tapOn:
+    id: add-entry
+- tapOn:
+    id: entry-title
+- inputText: Warehouse Associate
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-organization
+- inputText: Dockside Supply
+- runFlow: subflows/kb.yaml
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- assertVisible:
+    id: version-new-1
+- assertVisible:
+    id: version-new-2
+- tapOn:
+    id: version-card-2
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-movetop-11
+- assertVisible:
+    id: entry-new-11
+- assertVisible: "New"
+- assertVisible:
+    id: entry-include-11
+    checked: true
+- tapOn:
+    id: entry-movetop-11
+- extendedWaitUntil:
+    notVisible:
+      id: entry-movetop-11
+    timeout: 10000

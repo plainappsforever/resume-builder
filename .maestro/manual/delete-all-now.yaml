@@ -1,0 +1,32 @@
+# v1.1 F2 device check: Backup and data (opened by its route link: the Settings list did not scroll reliably in this
+# manual flow, 3 attempts) → Delete all data → both confirmations.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 90000
+- openLink: resumebuilder-dev://data
+- tapOn:
+    text: Open
+    optional: true
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- tapOn: Continue
+- tapOn: Delete everything
+# v1.1: the Data screen's delete hint is longer; the message under the button can be below the fold
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: delete-message
+- extendedWaitUntil:
+    visible:
+      id: delete-message
+      text: "All data deleted."
+    timeout: 30000

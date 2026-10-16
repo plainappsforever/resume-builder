@@ -1,0 +1,21 @@
+IT-Systemadministrator (m/w/d) Windows/Linux
+
+Mittelständischer Maschinenbauer (450 Mitarbeitende) in Ulm.
+
+Ihre Aufgaben:
+- Betrieb der Windows-Server- und Linux-Infrastruktur
+- Administration von Active Directory, Exchange Online und Microsoft 365
+- Betreuung von VMware vSphere und Veeam Backup
+- Netzwerk-Administration (VLAN, Firewall, VPN)
+- IT-Support im 2nd Level für 450 Anwender
+
+Ihr Profil:
+- Abgeschlossene Ausbildung als Fachinformatiker für Systemintegration oder Studium der Informatik
+- Mehrjährige Erfahrung in der Systemadministration
+- Sehr gute Kenntnisse in Windows Server, Active Directory und PowerShell
+- Kenntnisse in Linux, VMware und Netzwerktechnik
+- ITIL-Grundkenntnisse wünschenswert
+- Gute Deutsch- und Englischkenntnisse
+
+Wir bieten:
+Unbefristeter Vertrag, 30 Tage Urlaub, Firmenwagen-Option.

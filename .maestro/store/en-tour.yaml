@@ -1,0 +1,62 @@
+# P7: the screens of the EN store screenshots, from the loaded EN example (shared by screenshots-en.yaml and screenshots-release-en.yaml).
+appId: ${APP_ID}
+---
+- takeScreenshot: 01-home
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "2"
+      TAB: content
+- takeScreenshot: 02-content
+- tapOn:
+    id: version-tabs-preview
+- extendedWaitUntil:
+    visible:
+      id: preview-info
+    timeout: 40000
+- waitForAnimationToEnd
+- takeScreenshot: 03-preview
+- tapOn:
+    id: version-tabs-job
+- extendedWaitUntil:
+    visible:
+      id: job-ad
+    timeout: 15000
+# unconditional: iOS counts an element below the fold as visible, so scroll-to would stay at the top
+- scrollUntilVisible:
+    element:
+      id: job-summary
+    timeout: 25000
+    speed: 40
+    centerElement: true
+- takeScreenshot: 04-job
+- scrollUntilVisible:
+    element:
+      id: version-tabs-check
+    direction: UP
+    timeout: 25000
+    speed: 60
+- tapOn:
+    id: version-tabs-check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 15000
+- takeScreenshot: 05-check
+- tapOn:
+    id: version-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- runFlow:
+    file: ../subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- takeScreenshot: 06-export

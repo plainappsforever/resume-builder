@@ -1,0 +1,48 @@
+# A11 / D21: the example loads from the empty Home, is removable in one tap (with a confirmation), and becomes the user's
+# own data - no longer removable as "example" - as soon as they change something. Precondition: empty app.
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 40000
+- assertVisible: ".*Alex Morgan.*"
+- assertVisible:
+    id: version-card-1
+- assertVisible:
+    id: version-card-2
+- assertVisible:
+    id: remove-example
+- tapOn:
+    id: remove-example
+- tapOn: Remove
+- extendedWaitUntil:
+    visible:
+      id: start-profile
+    timeout: 15000
+- assertNotVisible:
+    id: version-card-1
+# load it again, then change something: it is the user's now
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: remove-example
+    timeout: 15000
+- tapOn:
+    id: tab-profile
+- tapOn:
+    id: profile-headline
+- eraseText: 60
+- inputText: Operations Lead
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: tab-home
+- extendedWaitUntil:
+    notVisible:
+      id: remove-example
+    timeout: 10000
+- assertVisible: ".*Operations Lead.*"

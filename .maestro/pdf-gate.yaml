@@ -1,0 +1,38 @@
+# P5 gate (D14/D15, A1 on the device): the dev-only screen prints the referee's 72 reference documents (6 templates x
+# 4 fixtures EN/DE x A4/Letter, photo samples, six long-name documents (v1.1), cover letters) with expo-print on this device and reads each back with
+# pdf.js in the app's WebView. Every one must read back completely and in order. Files stay in <document>/pdf-gate/
+# for scripts/device-referee.mjs (pdf.js in Node + Apple PDFKit on the Mac).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 90000
+- openLink: resumebuilder-dev://debug/pdf-gate?run=maestro
+- tapOn:
+    text: Open
+    optional: true
+# v1.1 (D99): Android sometimes drops a link sent right after the launch: send it once more if the gate screen did not open
+- extendedWaitUntil:
+    visible:
+      id: gate-verdict
+    timeout: 30000
+    optional: true
+- runFlow:
+    when:
+      notVisible:
+        id: gate-verdict
+    commands:
+      - openLink: resumebuilder-dev://debug/pdf-gate?run=maestro
+      - tapOn:
+          text: Open
+          optional: true
+- extendedWaitUntil:
+    visible:
+      text: "GATE (PASS|FAIL|ERROR).*"
+    timeout: 600000
+- assertVisible:
+    id: gate-verdict
+    text: "GATE PASS 72/72"

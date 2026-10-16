@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import { runChecks } from '@/engine/checks';
+const S = process.env.RB_S as string;
+test('checks dump', () => {
+  const cases = JSON.parse(fs.readFileSync(`${S}/checks_cases.json`, 'utf8'));
+  fs.writeFileSync(`${S}/checks_engine.json`, JSON.stringify(cases.map((c: any) => runChecks(c.model, c.ctx).map((r) => ({ id: r.id, status: r.status, n: r.findings.length, codes: r.findings.map((f) => f.code + ':' + f.severity) })))));
+});

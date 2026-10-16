@@ -1,0 +1,2 @@
+#!/bin/zsh
+cd "$(dirname "$0")/../../.." && npx jest --rootDir . --modulePaths ./node_modules --roots /private/tmp/claude-501/-Users-tim-Developer-mobile-starter/d97465a4-0c37-458f-9b0f-4584d9e762c0/scratchpad/rb-review-final/drv --testMatch "/private/tmp/claude-501/-Users-tim-Developer-mobile-starter/d97465a4-0c37-458f-9b0f-4584d9e762c0/scratchpad/rb-review-final/drv/$1" 2>&1 | grep -v "^\s*at " | tail -${2:-30}

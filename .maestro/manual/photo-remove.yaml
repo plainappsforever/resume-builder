@@ -1,0 +1,21 @@
+# v1.1 F2 device check: Profile → Remove photo (the photo stored by photo-picker-open.yaml).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 90000
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: photo-remove
+- tapOn:
+    id: photo-remove
+- extendedWaitUntil:
+    notVisible:
+      id: photo-preview
+    timeout: 10000

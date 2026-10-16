@@ -1,0 +1,10 @@
+# One cold start: the app is stopped, launched and we wait for the home screen (testID home-screen).
+appId: ${APP_ID}
+---
+- stopApp
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: home-screen
+    timeout: 60000

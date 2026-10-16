@@ -1,0 +1,231 @@
+# SPEC section 7 flow 2: in a version hide an entry, override a bullet "for this version only", apply it to the master;
+# (P6) then paste a job ad on the Job tab, see a keyword "Missing", include the hidden entry that contains it and see it
+# "Found". Precondition: the EN example (versions: 1 = General, 2 = Northwind Freight; entry 1 = Operations Coordinator
+# with 4 bullets, entry 2 = Customer Service Team Lead; the volunteer section "Route planning volunteer" is hidden in 2).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-2
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+# hide an entry in this version only
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-include-2
+- assertVisible:
+    id: entry-include-2
+    checked: true
+- tapOn:
+    id: entry-include-2
+- assertVisible:
+    id: entry-include-2
+    checked: false
+# override the first bullet of entry 1 for this version only
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-edit-1
+- tapOn:
+    id: entry-edit-1
+- extendedWaitUntil:
+    visible:
+      id: override-screen
+    timeout: 10000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: override-bullet-1
+- assertNotVisible:
+    id: bullet-apply-1
+- tapOn:
+    id: override-bullet-1
+    point: 95%,90%
+- eraseText: 200
+- inputText: Built 8 Excel dashboards for 40 routes
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-apply-1
+- extendedWaitUntil:
+    visible:
+      id: bullet-apply-1
+    timeout: 10000
+- assertVisible: "Profile text: Built 6 Excel dashboards.*"
+# the master still has the old text (a version edit never touches it)
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: section-row-1
+- tapOn:
+    id: section-row-1
+- tapOn:
+    id: entry-row-1
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-0
+- assertVisible: "Built 6 Excel dashboards.*"
+- assertNotVisible: "Built 8 Excel dashboards.*"
+# back in the version: apply the override to the master
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- tapOn:
+    id: version-card-2
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-edit-1
+- tapOn:
+    id: entry-edit-1
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-apply-1
+- tapOn:
+    id: bullet-apply-1
+- extendedWaitUntil:
+    notVisible:
+      id: bullet-apply-1
+    timeout: 10000
+# now the master has the new text, and the other version flags the change
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-profile
+- tapOn:
+    id: section-row-1
+- tapOn:
+    id: entry-row-1
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-0
+- assertVisible: "Built 8 Excel dashboards.*"
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- assertVisible:
+    id: version-new-1
+# P6: the Job tab. Paste a new ad into Northwind Freight (it hides the volunteer section): "route planning" is missing, the
+# hidden entry that contains it is offered, one tap includes it, and the keyword is found.
+- tapOn:
+    id: version-card-2
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-job
+- extendedWaitUntil:
+    visible:
+      id: job-ad
+    timeout: 15000
+- tapOn:
+    id: job-ad
+    point: 95%,95%
+- eraseText: 600
+- inputText: Requirements - route planning, Excel and Power BI
+- runFlow: subflows/kb.yaml
+- extendedWaitUntil:
+    visible:
+      id: kw-status-route-planning
+    timeout: 15000
+- assertVisible:
+    id: kw-status-route-planning
+    text: Missing
+- assertVisible:
+    id: job-summary
+    text: "Found \\d+ · Variants \\d+ · Missing \\d+ of the \\d+ shown"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: kw-status-excel
+- assertVisible:
+    id: kw-status-excel
+    text: Found
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: kw-include-route-planning-0
+- assertVisible: "In your profile: 1 hidden entry contains it.*"
+- assertVisible: "Include “Route planning volunteer” and its section"
+- tapOn:
+    id: kw-include-route-planning-0
+- extendedWaitUntil:
+    visible:
+      id: kw-status-route-planning
+      text: Found
+    timeout: 15000
+- assertNotVisible:
+    id: kw-include-route-planning-0
+# the filter shows only what is still missing: nothing is
+- swipe:
+    direction: DOWN
+    duration: 400
+- swipe:
+    direction: DOWN
+    duration: 400
+- tapOn:
+    id: job-filter-missing
+- assertVisible:
+    id: job-none-match
+- assertNotVisible:
+    id: kw-status-route-planning
+# ignore a keyword and bring it back; add an own phrase (the list is the user's; removing an own phrase is covered by Jest only:
+# Maestro on iOS counts a card scrolled just off the top as visible and the tap then misses)
+- tapOn:
+    id: job-filter-all
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-ignore-power-bi
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: kw-ignore-power-bi
+- tapOn:
+    id: kw-ignore-power-bi
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-restore-power-bi
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: kw-restore-power-bi
+- tapOn:
+    id: kw-restore-power-bi
+- assertNotVisible:
+    id: kw-restore-power-bi
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: job-add-input
+- tapOn:
+    id: job-add-input
+- inputText: forklift
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: job-add-button
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-status-forklift
+- assertVisible:
+    id: kw-status-forklift
+    text: Missing

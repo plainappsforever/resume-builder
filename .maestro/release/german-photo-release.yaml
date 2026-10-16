@@ -1,0 +1,94 @@
+# v1.1 F11 (REVIEW_V1 #11) on a RELEASE build in GERMAN (the language comes from the system: iOS launch arguments here,
+# Android's per-app language set by scripts/release-extra.sh): the German example, a photo through the SYSTEM photo picker
+# (MAESTRO_PICK_X/Y), the photo switched on in the Lebenslauf, Export → the PDF is read back completely, in German words.
+appId: ${APP_ID}
+---
+# Fresh install state. Android: clearing the app data also resets its own language, so the driver clears it and sets German.
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - launchApp:
+          stopApp: true
+          clearState: true
+          arguments:
+            AppleLanguages: "(de)"
+            AppleLocale: "de_DE"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - launchApp:
+          stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- assertVisible: "Beispiel ansehen"
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-1
+    timeout: 40000
+- assertVisible: ".*Miriam Kowalski.*"
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: photo-choose
+- tapOn:
+    id: photo-choose
+- extendedWaitUntil:
+    notVisible:
+      id: photo-choose
+    timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn:
+    point: ${MAESTRO_PICK_X},${MAESTRO_PICK_Y}
+- extendedWaitUntil:
+    visible:
+      id: photo-preview
+    timeout: 30000
+- tapOn:
+    id: tab-home
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "1"
+      TAB: design
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: design-photo
+- tapOn:
+    id: design-photo
+- scrollUntilVisible:
+    element:
+      id: version-tabs-export
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: version-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- runFlow:
+    file: ../subflows/dismiss-share.yaml
+    env:
+      WHAT: ".*"
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 60000
+- assertVisible:
+    id: readback-headline
+    text: "Mit pdf.js 6.3.289 zurückgelesen: (\\d+) von \\1 Wörtern, alle \\d+ Zeilen in der richtigen Reihenfolge, .*"
+- assertNotVisible:
+    id: export-held

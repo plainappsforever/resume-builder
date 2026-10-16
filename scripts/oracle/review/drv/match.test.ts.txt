@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import { countOccurrences } from '@/engine/keywords/match';
+const S = process.env.RB_S as string;
+test('match dump', () => {
+  const probes: [string, string][] = JSON.parse(fs.readFileSync(`${S}/match_probes.json`, 'utf8'));
+  fs.writeFileSync(`${S}/match_engine.json`, JSON.stringify(probes.map(([t, h]) => { const o = countOccurrences(t, [h]); return [t, h, o.exactCount > 0 ? 'found' : o.count > 0 ? 'variant:' + o.variantKind : 'missing']; })));
+});

@@ -1,0 +1,19 @@
+import fs from 'node:fs';
+import { formatDateRange, formatDate, validateDate, validateDateRange, normalizeDateRange, sortNewestFirst } from '@/engine/dates';
+test('dates', () => {
+  const out: any[] = [];
+  const styles = ['MM/YYYY', 'Mon YYYY', 'YYYY'] as const;
+  const ranges: [string | null, string | null, boolean][] = [
+    ['2019-03', null, true], ['2019-03', '2021-11', false], ['2019', '2021', false], ['2019-03', '2019-03', false], ['2019', '2019-05', false],
+    ['2019-05', '2019', false], [null, '2020-02', false], [null, null, true], ['2019-13', null, false], ['2019-00', null, false], ['1000', null, false],
+    ['2019-09', '2019-10', false], ['2019-03', '2019-07', false], ['2019-06', '2019-12', false], ['2016-01', '2019-02', false], ['2019-05', '2019-05', true],
+  ];
+  for (const [s, e, c] of ranges) for (const st of styles) for (const lang of ['en', 'de'] as const) {
+    let r: string; try { r = formatDateRange({ startDate: s, endDate: e, isCurrent: c }, st, lang); } catch (x: any) { r = 'THROW ' + x.message; }
+    out.push([s, e, c, st, lang, r]);
+  }
+  const val = ['1949', '1950', '2032', '2033', '2019-1', '2019-01', '2019-12', '2019-13', '2019-00', ' 2019', '2019 ', '19', '२०१९', '２０１９'].map((v) => [v, validateDate(v, 2026)]);
+  const rangeVal = [[{ startDate: '2019', endDate: '2019-01', isCurrent: false }], [{ startDate: '2019-06', endDate: '2019', isCurrent: false }], [{ startDate: '2020', endDate: '2019-12', isCurrent: false }], [{ startDate: '2019-05', endDate: '2019-04', isCurrent: false }], [{ startDate: null, endDate: '2019', isCurrent: false }], [{ startDate: '2019', endDate: '2020', isCurrent: true }]].map(([x]) => [x, validateDateRange(normalizeDateRange(x as any), 2026), normalizeDateRange(x as any)]);
+  const sorted = sortNewestFirst([{ id: 1, startDate: '2015', endDate: '2018', isCurrent: false }, { id: 2, startDate: '2019-01', endDate: null, isCurrent: true }, { id: 3, startDate: '2018-05', endDate: '2018-12', isCurrent: false }, { id: 4, startDate: '2020', endDate: null, isCurrent: true }, { id: 5, startDate: null, endDate: null, isCurrent: false }, { id: 6, startDate: '2017', endDate: '2018-12', isCurrent: false }] as any).map((x: any) => x.id);
+  fs.writeFileSync(`${process.env.RB_S}/dates_engine.json`, JSON.stringify({ out, val, rangeVal, sorted }, null, 0));
+});

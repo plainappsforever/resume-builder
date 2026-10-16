@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import { renderHtml } from '@/render/index';
+import { lintHtml } from '@/render/lint';
+import { modelFor, STRESS_EN, FIXTURES } from '@/render/__fixtures__/models';
+import { TEMPLATE_IDS } from '@/engine/types';
+import { plainText } from '@/engine/plaintext';
+import { runChecks } from '@/engine/checks';
+
+const NASTY = [
+  '<script>alert("x")</script>', 'Tom & Jerry <b>bold</b> "quoted" \'single\'', '</p><h1>Injected</h1>', '&amp; already-escaped &lt;',
+  'עברית שלום Hebrew RTL', 'العربية Arabic', 'Ελληνικά Greek', 'Кириллица', '中文 简历', 'Emoji 🚀👍🏽', 'A‮reversed‬ text',
+  'Content: strategy and transform: plan', 'Reduced cost (one = two)', 'x'.repeat(400), 'Donaudampfschifffahrtsgesellschaftskapitänswitwenrentenversicherungsanstalt',
+  'Line1\nLine2\n\nLine3', '  leading   and   trailing  ', 'Zero​width', 'Soft­hyphen', 'NBSP here', 'tab\there',
+];
+test('render nasty', () => {
+  const out: any[] = [];
+  for (const t of TEMPLATE_IDS) for (const paper of ['a4', 'letter']) {
+    const m: any = modelFor(STRESS_EN, 'en', { template: t, style: { paper, photo: true } });
+    let k = 0;
+    const next = () => NASTY[k++ % NASTY.length];
+    m.person.fullName = 'Anna <Schmidt> & "Co"'; m.person.headline = next(); m.summary = NASTY.join(' | ');
+    m.person.links = [{ label: 'website', customLabel: null, url: 'javascript:alert(1)' }, { label: 'other', customLabel: '"><img src=x onerror=alert(1)>', url: 'https://ex.de/?a=1&b="2"' }];
+    for (const s of m.sections) { s.title = s.title ?? null; for (const e of s.entries) { e.title = next(); e.organization = next(); e.description = next(); for (const b of e.bullets) b.text = next(); } }
+    const r = renderHtml(m);
+    const body = r.html.replace(/<style>[\s\S]*?<\/style>/, '');
+    const tags = [...body.matchAll(/<([a-zA-Z0-9]+)[\s>]/g)].map((x) => x[1].toLowerCase());
+    const badTags = [...new Set(tags)].filter((x) => !['html', 'head', 'meta', 'title', 'body', 'h1', 'h2', 'p', 'b', 'i', 'span', 'div', 'img', 'br'].includes(x));
+    const attrs = [...body.matchAll(/\s(on[a-z]+)\s*=/gi)].map((x) => x[1]);
+    const textOfHtml = body.replace(/<[^>]+>/g, '\n').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+    out.push({ t, paper, badTags, attrs, lint: lintHtml(r.html).map((i) => i.rule + ':' + i.detail.slice(0, 60)), lines: r.expectedLines.length,
+      hasJsLink: /javascript:/i.test(body), hasScriptTag: /<script/i.test(body), page: r.page, print: r.print,
+      expectedSample: r.expectedLines.slice(0, 4).map((l) => l.text), rtlLine: r.expectedLines.find((l) => /עברית/.test(l.text))?.text,
+      checks: runChecks(m, { today: { year: 2026, month: 10 } }).filter((c) => ['C13', 'C14'].includes(c.id)).map((c) => [c.id, c.status, c.findings.length]),
+    });
+  }
+  const pt = plainText(modelFor(STRESS_EN, 'en', { template: 'plain' }));
+  fs.writeFileSync(`${process.env.RB_S}/render_nasty.json`, JSON.stringify({ out, plain: pt.slice(0, 1500) }, null, 1));
+});

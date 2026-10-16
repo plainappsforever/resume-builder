@@ -1,0 +1,15 @@
+{
+  "_comment": "Must-have phrases per job ad (A4: >= 90 % of them in the top 25), normalised (lower case). Written with the ads, before the engine existed, by the same agent (not blind, L27).",
+  "en-warehouse": ["forklift certification", "rf scanners", "warehouse management system", "wms", "pick and pack", "order fulfillment", "shipping and receiving", "cycle counts", "reach truck", "inventory", "attention to detail", "workplace safety"],
+  "en-software-developer": ["typescript", "javascript", "react", "node.js", "rest apis", "postgresql", "sql", "docker", "aws", "git", "ci/cd", "code reviews", "scrum"],
+  "en-marketing": ["digital marketing", "google ads", "meta ads", "google analytics", "seo", "email marketing", "marketing automation", "content marketing", "performance marketing", "e-commerce", "a/b testing", "copywriting"],
+  "en-retail": ["retail sales", "customer service", "cash handling", "pos systems", "point of sale", "visual merchandising", "product knowledge", "sales goals", "cash register", "inventory counts"],
+  "en-customer-service": ["customer service", "customer support", "call center", "zendesk", "ticketing system", "live chat", "email support", "inbound calls", "escalations", "active listening", "de-escalation", "service level agreements"],
+  "en-data-analyst": ["sql", "tableau", "power bi", "python", "pandas", "dashboards", "excel", "pivot tables", "statistical analysis", "regression analysis", "a/b testing", "business intelligence", "snowflake"],
+  "de-pflegefachkraft": ["pflegefachkraft", "intensivstation", "behandlungspflege", "beatmung", "medikamentengabe", "pflegeplanung", "pflegedokumentation", "wundversorgung", "praxisanleitung", "hygienestandards", "fachweiterbildung intensivpflege", "schichtdienst"],
+  "de-buchhaltung": ["finanzbuchhaltung", "kreditorenbuchhaltung", "debitorenbuchhaltung", "kontenabstimmung", "monatsabschlüsse", "jahresabschluss", "hgb", "umsatzsteuervoranmeldungen", "zahlungsverkehr", "datev", "steuerrecht", "bilanzierung"],
+  "de-projektmanager": ["projektmanagement", "projektleitung", "projektplanung", "terminplanung", "budgetverantwortung", "risikomanagement", "stakeholdermanagement", "scrum", "prince2", "jira", "confluence", "kommunikationsfähigkeit"],
+  "de-elektriker": ["elektroinstallation", "photovoltaik", "wallboxen", "photovoltaikanlagen", "inbetriebnahme", "unterverteilungen", "fehlersuche", "störungsbeseitigung", "dguv v3", "knx", "vde-vorschriften", "führerschein klasse b"],
+  "de-lehrer": ["mathematik", "physik", "sekundarstufe", "binnendifferenzierung", "inklusion", "unterrichtsplanung", "klassenleitung", "elternarbeit", "förderbedarf", "lehramtsstudium", "zweites staatsexamen", "referendariat"],
+  "de-verwaltungsassistenz": ["terminplanung", "kalenderführung", "geschäftskorrespondenz", "protokollführung", "reiseplanung", "reisekostenabrechnung", "datenpflege", "dokumentenmanagement", "sekretariat", "teamassistenz", "outlook", "dsgvo"]
+}

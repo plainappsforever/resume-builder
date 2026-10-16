@@ -1,0 +1,51 @@
+# Release subflow (P7): opens the EN example's first resume, switches it to the template env TEMPLATE (classic | modern | compact |
+# executive | lebenslauf | plain), exports the PDF (the share sheet opens and is closed) and asserts the pdf.js read-back in the
+# app's WebView says every line came back in the right order. `export-timing` only exists after an export made on this screen
+# visit, so a read-back left over from an earlier template cannot pass. Ends on the Home tab.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "1"
+      TAB: design
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: template-${TEMPLATE}
+- tapOn:
+    id: template-${TEMPLATE}
+- scrollUntilVisible:
+    element:
+      id: version-tabs-export
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: version-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- assertNotVisible:
+    id: export-timing
+- tapOn:
+    id: export-share
+- runFlow:
+    file: ../subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: export-timing
+    timeout: 40000
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, all \\d+ lines in the right order.*"
+- assertNotVisible:
+    id: export-debug
+- runFlow: ../subflows/back.yaml
+- extendedWaitUntil:
+    visible:
+      id: home-screen
+    timeout: 15000

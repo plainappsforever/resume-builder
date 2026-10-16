@@ -1,0 +1,16 @@
+# Like scroll-to.yaml, but centres the target: for a control in the middle of a long list at the bottom of a tab screen
+# (Settings debug buttons) — stopped at the edge, it sits under the tab bar and a tap lands on the bar (P6).
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      notVisible:
+        id: ${TARGET}
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: ${TARGET}
+          timeout: 25000
+          speed: 60
+          centerElement: true
+- waitForAnimationToEnd

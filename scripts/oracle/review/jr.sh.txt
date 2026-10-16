@@ -1,0 +1,3 @@
+#!/bin/zsh
+# usage: jr.sh <testfile basename>
+cd "$(dirname "$0")/../../.." && RB_S=/private/tmp/claude-501/-Users-tim-Developer-mobile-starter/d97465a4-0c37-458f-9b0f-4584d9e762c0/scratchpad/rb-review npx jest --rootDir . --modulePaths ./node_modules --roots /private/tmp/claude-501/-Users-tim-Developer-mobile-starter/d97465a4-0c37-458f-9b0f-4584d9e762c0/scratchpad/rb-review/drv --testMatch "/private/tmp/claude-501/-Users-tim-Developer-mobile-starter/d97465a4-0c37-458f-9b0f-4584d9e762c0/scratchpad/rb-review/drv/$1" 2>&1 | tail -${2:-8}

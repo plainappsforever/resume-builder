@@ -1,0 +1,201 @@
+# P6 (F10, A15): a cover letter in the design of a resume: write it from an example, look at the real PDF, export it through
+# the same verified path as a resume (the share sheet opens, the read-back says "all lines in the right order" and the
+# history keeps the file), then a German letter, and delete it. Dev builds copy each export to pdf-gate/cover-maestro for
+# scripts/device-referee.mjs (Apple PDFKit + pdf.js in Node). Precondition: the EN example (version 2 = Northwind Freight, Classic).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: new-cover
+- assertVisible:
+    id: no-covers
+- tapOn:
+    id: new-cover
+- extendedWaitUntil:
+    visible:
+      id: cover-screen
+    timeout: 15000
+- tapOn:
+    id: cover-company
+- inputText: Northwind Freight
+- tapOn:
+    id: cover-contact
+- inputText: Ms. Whitfield
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-design-2
+- tapOn:
+    id: cover-design-2
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-example-experienced
+- tapOn:
+    id: cover-example-experienced
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-placeholders
+- assertVisible: "The letter still has text in \\[square brackets\\].*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-salutation
+- assertVisible: "Dear Ms. Whitfield,"
+# the real PDF
+- scrollUntilVisible:
+    element:
+      id: cover-tabs-preview
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: cover-tabs-preview
+- extendedWaitUntil:
+    visible:
+      id: cover-preview-info
+    timeout: 40000
+- assertVisible:
+    id: cover-preview-info
+    text: "1 page · .* — this is the real PDF"
+# export
+- tapOn:
+    id: cover-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: cover-share
+    timeout: 15000
+- tapOn:
+    id: cover-share
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: cover-screen
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, all \\d+ lines in the right order, 1 page, \\d+ KB\\."
+- assertVisible:
+    id: export-debug
+    text: "EXPORT pages=1 bytes=\\d+ printMs=\\d+ readbackMs=\\d+ totalMs=\\d+ pass=true"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: history-row-0
+- assertVisible: "Alex-Morgan-Cover-Letter-Northwind-Freight.pdf"
+# "Share again" sends the identical stored file
+- tapOn:
+    id: history-reshare-0
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: cover-screen
+      WHAT: PDF Document
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: reshare-debug
+- assertVisible:
+    id: reshare-debug
+    text: "RESHARE Alex-Morgan-Cover-Letter-Northwind-Freight.pdf bytes=(\\d+) stored=\\1 rerendered=false"
+# copy as text works too
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: cover-copy-text
+- assertVisible:
+    id: cover-note
+    text: "Plain text copied.*"
+# back to Home: the letter is listed
+- runFlow: subflows/back.yaml
+- extendedWaitUntil:
+    visible:
+      id: cover-card-1
+    timeout: 15000
+# a German letter with the default look
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: new-cover
+- tapOn:
+    id: new-cover
+- extendedWaitUntil:
+    visible:
+      id: cover-screen
+    timeout: 15000
+- tapOn:
+    id: cover-language-de
+- tapOn:
+    id: cover-company
+- inputText: Stadtwerke Talbach
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-example-experienced
+- tapOn:
+    id: cover-example-experienced
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-salutation
+- assertVisible: "Sehr geehrte Damen und Herren,"
+- scrollUntilVisible:
+    element:
+      id: cover-tabs-export
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: cover-tabs-export
+- tapOn:
+    id: cover-share
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: cover-screen
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, all \\d+ lines in the right order, 1 page, \\d+ KB\\."
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: history-row-0
+- assertVisible: "Alex-Morgan-Anschreiben-Stadtwerke-Talbach.pdf"
+# delete the German letter: it leaves Home, the first one stays
+- scrollUntilVisible:
+    element:
+      id: cover-tabs-write
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: cover-tabs-write
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-delete
+- tapOn:
+    id: cover-delete
+- tapOn: Delete
+- extendedWaitUntil:
+    visible:
+      id: cover-card-1
+    timeout: 15000
+- assertNotVisible:
+    id: cover-card-2

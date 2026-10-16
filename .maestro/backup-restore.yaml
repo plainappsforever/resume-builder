@@ -1,0 +1,175 @@
+# P6 (F12, A10, SPEC §7 flow 4): back up → delete everything → restore → the data is the same. The Data screen's dev label
+# `DATA hash=…` is a fingerprint of every table (not the settings): equal before the backup and after the restore. The
+# restore itself goes through the dev button "use the last backup made on this phone" (the system file picker is not a
+# Maestro target); validation, summary, confirmation, safety copy and the one transaction are the real path.
+# Precondition: the EN example.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- extendedWaitUntil:
+    visible:
+      id: data-hash
+    timeout: 15000
+- assertVisible:
+    id: last-backup
+    text: "No backup made yet."
+- copyTextFrom:
+    id: data-hash
+- evalScript: ${output.before = maestro.copiedText}
+- assertTrue: ${output.before.length > 12}
+# back up: the share sheet opens with the file
+- tapOn:
+    id: backup-now
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: data-screen
+      WHAT: ".*"
+- assertVisible:
+    id: backup-message
+    text: "Backup file ready: Resume-Builder-Backup-\\d{4}-\\d{2}-\\d{2}\\.json"
+- assertNotVisible:
+    id: last-backup
+    text: "No backup made yet."
+# delete all data: two steps; cancelling either leaves everything
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- assertVisible: "Delete all data\\?"
+- tapOn: Cancel
+- runFlow: subflows/to-top.yaml
+- copyTextFrom:
+    id: data-hash
+- assertTrue: ${maestro.copiedText == output.before}
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- tapOn: Continue
+- assertVisible: "Really delete everything\\?"
+- tapOn: Delete everything
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-message
+- extendedWaitUntil:
+    visible:
+      id: delete-message
+      text: "All data deleted."
+    timeout: 30000
+- runFlow: subflows/to-top.yaml
+- copyTextFrom:
+    id: data-hash
+- assertTrue: ${maestro.copiedText != output.before}
+# restore: validate, summary, confirm
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-dev-last
+- tapOn:
+    id: restore-dev-last
+- extendedWaitUntil:
+    visible:
+      id: restore-summary
+    timeout: 15000
+- assertVisible:
+    id: restore-counts
+    text: "Profile of Alex Morgan · \\d+ sections · \\d+ entries · 2 resumes · 0 cover letters"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-confirm
+- tapOn:
+    id: restore-confirm
+- extendedWaitUntil:
+    visible:
+      id: restore-message
+      text: "Restored: .*"
+    timeout: 30000
+- runFlow: subflows/to-top.yaml
+- copyTextFrom:
+    id: data-hash
+- assertTrue: ${maestro.copiedText == output.before}
+# restoring over existing data keeps a safety copy that can be brought back
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-dev-last
+- tapOn:
+    id: restore-dev-last
+- extendedWaitUntil:
+    visible:
+      id: restore-summary
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-confirm
+- tapOn:
+    id: restore-confirm
+- extendedWaitUntil:
+    visible:
+      id: restore-safety
+    timeout: 30000
+- assertVisible:
+    id: safety-hint
+# "Undo the last restore" brings the safety copy back through the same path
+- tapOn:
+    id: restore-safety
+- extendedWaitUntil:
+    visible:
+      id: restore-summary
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-confirm
+- tapOn:
+    id: restore-confirm
+- extendedWaitUntil:
+    visible:
+      id: restore-message
+      text: "Restored: .*"
+    timeout: 30000
+- runFlow: subflows/to-top.yaml
+- copyTextFrom:
+    id: data-hash
+- assertTrue: ${maestro.copiedText == output.before}
+# all resumes as one text file: the share sheet opens
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: text-share-all
+- tapOn:
+    id: text-share-all
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: data-screen
+      WHAT: ".*"
+- assertVisible:
+    id: text-message
+    text: "Text file ready: Resume-Builder-All-Resumes-\\d{4}-\\d{2}-\\d{2}\\.txt"
+# the app shows the restored data
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- assertVisible: ".*Alex Morgan.*"
+- assertVisible:
+    id: version-card-2

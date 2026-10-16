@@ -1,0 +1,25 @@
+# v1.1 F11 helper (exploration): Backup and data → Restore from a file → the SYSTEM file picker is on screen.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 90000
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- extendedWaitUntil:
+    visible:
+      id: restore-pick
+    timeout: 15000
+- tapOn:
+    id: restore-pick
+- waitForAnimationToEnd:
+    timeout: 5000

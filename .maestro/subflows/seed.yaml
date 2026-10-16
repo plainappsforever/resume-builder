@@ -1,0 +1,43 @@
+# Absolute precondition: the example profile (EN or DE) with its two resumes; env FIXTURE = example-en | example-de.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: tab-home
+    timeout: 90000
+- openLink: resumebuilder-dev://debug/seedwait?fixture=${FIXTURE}
+- tapOn:
+    text: Open
+    optional: true
+# v1.1: wait for the dev link's own "done" (debug/seedwait, debug/resetwait stay until Continue), not for a Home element that the
+# previous flow's data may already show (a late link then raced the flow under load).
+- extendedWaitUntil:
+    visible:
+      id: debug-continue
+    timeout: 30000
+    optional: true
+# Android sometimes drops a link sent right after the launch: send it once more (seed/reset are idempotent)
+- runFlow:
+    when:
+      notVisible:
+        id: debug-continue
+    commands:
+      - openLink: resumebuilder-dev://debug/seedwait?fixture=${FIXTURE}
+      - tapOn:
+          text: Open
+          optional: true
+- extendedWaitUntil:
+    visible:
+      id: debug-continue
+    timeout: 60000
+- assertVisible:
+    id: debug-status
+    text: "debug seed: done"
+- tapOn:
+    id: debug-continue
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 30000

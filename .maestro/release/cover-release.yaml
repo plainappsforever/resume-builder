@@ -1,0 +1,77 @@
+# P7 (F10, A15 on a RELEASE build): a cover letter from an example, its real PDF preview, export and the pdf.js read-back
+# ("all lines in the right order") without Metro or dev links. Fresh install; the EN example's second resume (Classic).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-2
+    timeout: 40000
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: new-cover
+- tapOn:
+    id: new-cover
+- extendedWaitUntil:
+    visible:
+      id: cover-screen
+    timeout: 15000
+- tapOn:
+    id: cover-company
+- inputText: Northwind Freight
+- tapOn:
+    id: cover-contact
+- inputText: Ms. Whitfield
+- runFlow: ../subflows/kb.yaml
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: cover-example-experienced
+- tapOn:
+    id: cover-example-experienced
+- scrollUntilVisible:
+    element:
+      id: cover-tabs-preview
+    direction: UP
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: cover-tabs-preview
+- extendedWaitUntil:
+    visible:
+      id: cover-preview-info
+    timeout: 40000
+- assertVisible:
+    id: cover-preview-info
+    text: "1 page · .* — this is the real PDF"
+- tapOn:
+    id: cover-tabs-export
+- extendedWaitUntil:
+    visible:
+      id: cover-share
+    timeout: 15000
+- tapOn:
+    id: cover-share
+- runFlow:
+    file: ../subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: cover-screen
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js 6.3.289: \\d+ of \\d+ words, all \\d+ lines in the right order, 1 page, \\d+ KB\\."
+- assertNotVisible:
+    id: export-debug

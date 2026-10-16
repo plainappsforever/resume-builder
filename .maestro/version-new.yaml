@@ -1,0 +1,68 @@
+# SPEC section 6 "New version sheet": for a job ad (company, role, pasted ad, based on an existing resume) and copy of a
+# resume (name gets " (2)"). Precondition: the EN example (resumes 1 and 2).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: new-version
+- tapOn:
+    id: new-version
+- tapOn:
+    id: new-mode-ad
+- tapOn:
+    id: new-ad
+- inputText: Planner wanted. We need Excel and route planning.
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: new-company
+- inputText: Acme Robotics
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: new-role
+- inputText: Planner
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: base-1
+- tapOn:
+    id: base-1
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: create-version
+- tapOn:
+    id: create-version
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- runFlow: subflows/back.yaml
+- assertVisible: ".*Acme Robotics.*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: new-version
+- tapOn:
+    id: new-version
+- tapOn:
+    id: new-mode-duplicate
+- tapOn:
+    id: dup-1
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: create-version
+- tapOn:
+    id: create-version
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- runFlow: subflows/back.yaml
+- assertVisible: ".*General \\(2\\).*"

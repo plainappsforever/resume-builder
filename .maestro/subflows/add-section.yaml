@@ -1,0 +1,22 @@
+# Profile tab: opens "Add a section" and picks env KIND (experience | education | skills, all in the first chip row).
+# The chips open below the button, so the screen is scrolled to them; a tap swallowed by iOS right after a scroll or a
+# screen change is retried.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: scroll-to.yaml
+    env:
+      TARGET: add-section
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn:
+          id: add-section
+      - runFlow:
+          file: scroll-to.yaml
+          env:
+            TARGET: add-kind-${KIND}
+      - assertVisible:
+          id: add-kind-${KIND}
+- tapOn:
+    id: add-kind-${KIND}

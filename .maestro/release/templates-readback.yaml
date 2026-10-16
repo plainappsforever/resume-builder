@@ -1,0 +1,41 @@
+# P7 (A1 on a RELEASE build, no Metro, no dev links): the six templates of the EN example each export a PDF and the in-app pdf.js
+# read-back says all lines came back in the right order. Precondition: a fresh install (clearState below).
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-1
+    timeout: 40000
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: classic
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: modern
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: compact
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: executive
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: lebenslauf
+- runFlow:
+    file: export-template.yaml
+    env:
+      TEMPLATE: plain

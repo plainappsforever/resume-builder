@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import { renderHtml, renderCoverHtml } from '@/render/index';
+import { modelFor, FIXTURES } from '@/render/__fixtures__/models';
+import { COVER_FIXTURES } from '@/render/__fixtures__/covers';
+import { TEMPLATE_IDS } from '@/engine/types';
+import { FONT_IDS } from '@/engine/style';
+import { uncoveredChars } from '@/engine/checks';
+import { DOC_LABELS } from '@/render/labels';
+test('font chars', () => {
+  const res: Record<string, string[]> = {};
+  const labelText = JSON.stringify(DOC_LABELS) + ' – · • … „“ ‚‘ ’ — ';
+  for (const font of FONT_IDS) {
+    const bad = new Set<string>(uncoveredChars(labelText, font));
+    for (const t of TEMPLATE_IDS) for (const [id, f] of Object.entries(FIXTURES)) {
+      const r = renderHtml(modelFor(f.draft, f.lang, { template: t, style: { font } }));
+      for (const c of uncoveredChars(r.expectedLines.map((l) => l.text).join('\n'), font)) bad.add(c + '(' + id + ')');
+    }
+    for (const lang of ['en', 'de'] as const) {
+      const r = renderCoverHtml(COVER_FIXTURES[lang], { template: 'classic', style: JSON.stringify({ font }) }, '2026-10-01');
+      for (const c of uncoveredChars(r.expectedLines.map((l) => l.text).join('\n'), font)) bad.add(c + '(cover-' + lang + ')');
+    }
+    res[font] = [...bad].map((c) => c + ' U+' + c.codePointAt(0)!.toString(16));
+  }
+  fs.writeFileSync(`${process.env.RB_S}/fontchars.json`, JSON.stringify(res, null, 1));
+});

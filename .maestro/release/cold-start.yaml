@@ -1,0 +1,9 @@
+# P7: Release cold start - 5 launches from a stopped app until the home screen is visible; the times are read from Maestro's log by
+# scripts/cold-start-times.mjs. Precondition: the app has been opened once (data present), so the start is a normal start.
+appId: ${APP_ID}
+---
+- runFlow: cold-start-once.yaml
+- runFlow: cold-start-once.yaml
+- runFlow: cold-start-once.yaml
+- runFlow: cold-start-once.yaml
+- runFlow: cold-start-once.yaml

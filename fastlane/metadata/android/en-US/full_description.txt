@@ -1,0 +1,33 @@
+Keep one profile. Make a tailored resume for every job. Export a PDF with real, selectable text, and see what the app read back from it. Everything stays on your phone: no account, no ads, no watermark, no subscription, no limit on resumes or exports.
+
+One profile, many resumes
+Type your details, jobs, education, skills and languages once. For each job, make a resume from your profile: show or hide entries and bullet points, change their order, and re-word a bullet for that one resume only. A new job added to your profile shows up in every resume, marked as new. If you like a change, apply it back to the profile.
+
+Paste the job ad
+Paste the text of an ad. The app lists words and phrases from it, with counts and a snippet, and shows which of them your resume has, has in other words, or lacks. For a missing one it tells you which hidden entries of your profile contain it, and you can include them with one tap. There is no score and no percentage: you see every word and why it is listed. Nothing leaves your phone.
+
+A PDF you can check
+Every PDF is made on your phone with real text, not a picture of text. Right after the export, the app reads the file back with an open-source PDF reader and shows the result in plain words: how many words and lines it found, whether the lines came back in the right order, the page count and the file size. That is what one reader found: it shows that the words are real text in a sensible order. It compares words, not every punctuation mark, so check your e-mail address and links in the PDF yourself. How a particular employer's system sorts a file into fields is not known, and the app does not claim to know. If the read-back cannot run on your phone, the app says "not checked" instead of a pass.
+
+Structure checks with sources
+Fifteen checks look at name and contact details, section titles, dates, bullet points, photo, symbols, links, file size and more. Each one says what it looked at and where the rule comes from (a recruiting-software vendor's help page, or common advice, labelled as such), and takes you to the place to fix it. Only a missing name stops an export.
+
+Templates and layout
+Six single-column templates (Classic, Modern, Compact, Executive, Lebenslauf, Plain) with no tables and nothing in headers or footers. A4 or Letter, text size, margins and spacing, "fit to one page" in one tap, an optional photo for German-style CVs, and English or German dates and headings per resume.
+
+Cover letters
+Write a cover letter in the same style for a company and a contact person, and export it through the same PDF and read-back path.
+
+Help
+Action verbs and bullet-point examples in English and German, a plain explanation of what ATS means, and an explanation of how every check and the keyword matching work.
+
+Your data
+Make a backup file and restore it on another phone, copy your resume as plain text for application forms, share an earlier export again, or delete all data. The backup file is readable text, not encrypted, and contains your personal details: keep it somewhere safe. The app has no network code and no internet permission. Data leaves your phone only when you share or print a file yourself. The app switches the phone's automatic app backup off.
+
+Languages
+The app is in English and German and follows your phone. Each resume can be in English or German.
+
+Not in this version
+- No AI writing and no cloud: the app does not rewrite your text.
+- No import of an existing resume (PDF, Word or LinkedIn) and no Word export.
+- No job tracker, no score, and no promise that an employer's system will read your file: nobody outside the vendor can know how it is set up.

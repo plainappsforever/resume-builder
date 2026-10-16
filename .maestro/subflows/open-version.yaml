@@ -1,0 +1,18 @@
+# From Home: opens resume env ID (the version-card id suffix) on tab env TAB (content|design|preview|job|check|export). Scrolls to
+# the card first, centred (large text pushes it below the fold; a card at the very edge sits under the tab bar).
+appId: ${APP_ID}
+---
+- scrollUntilVisible:
+    element:
+      id: version-card-${ID}
+    timeout: 25000
+    speed: 60
+    centerElement: true
+- tapOn:
+    id: version-card-${ID}
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-${TAB}

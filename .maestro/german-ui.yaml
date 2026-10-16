@@ -1,0 +1,49 @@
+# A14: the UI in German (forced by the dev link, no change of the simulator language), German document dates, and the
+# way back to the device language. Precondition: empty app.
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- openLink: resumebuilder-dev://debug/lang?lang=de
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: Profil anlegen
+    timeout: 90000
+- assertVisible: "Beispiel ansehen"
+- assertNotVisible: "Start your profile"
+- openLink: resumebuilder-dev://debug/seed?fixture=example-de
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 30000
+- assertVisible: ".*Miriam Kowalski.*"
+- assertVisible: "Lebensläufe"
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      text: Inhalt
+    timeout: 15000
+- assertVisible: "Sprache des Dokuments"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-title-1
+- assertVisible: ".*heute.*"
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-settings
+- assertVisible: "Darstellung"
+- openLink: resumebuilder-dev://debug/reset
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: Start your profile
+    timeout: 90000

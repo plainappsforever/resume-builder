@@ -1,0 +1,33 @@
+# F1: the photo shows in the profile and can be removed (the simulator's photo library is empty, so the picture comes from
+# the dev link; the system picker itself is a device check). Precondition: empty app.
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- openLink: resumebuilder-dev://debug/photo
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: start-profile
+    timeout: 30000
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: photo-preview
+- assertVisible:
+    id: photo-preview
+# the remove button sits below the photo; on Android it can be just under the tab bar (P5 full runs)
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: photo-remove
+- tapOn:
+    id: photo-remove
+- extendedWaitUntil:
+    notVisible:
+      id: photo-preview
+    timeout: 10000
+- assertVisible: "Choose photo"

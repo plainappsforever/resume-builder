@@ -1,0 +1,24 @@
+# .oss-scrub-allow - findings of scripts/oss/scrub-check.sh that a human checked and accepts (public file, no values).
+# Reviewed 2026-10-16 for the first public source release.
+I-GPS test/fixtures/rb-gps-probe.jpg     # generated probe image; GPS = textbook Berlin city-centre point
+P-EMAIL assets/fonts/OFL.txt             # font author's address in the SIL Open Font License notice
+P-EMAIL scripts/*                        # made-up addresses in review oracle scripts
+P-PHONE scripts/*                        # made-up phone numbers in review oracle scripts
+P-EMAIL *.test.ts                        # made-up addresses in unit tests
+P-PHONE *.test.ts                        # made-up numbers in unit tests
+P-PHONE *.snap                           # made-up sample-profile phone in render snapshots
+P-PHONE src/engine/__fixtures__/*        # made-up sample profiles
+P-PHONE src/engine/content/sample-profiles.ts  # made-up sample profiles shipped as examples
+P-PHONE src/readback/__fixtures__/*      # PDF read-back fixtures of the made-up sample profiles
+P-PHONE src/render/__fixtures__/*        # made-up sample profiles for render tests
+P-PHONE test/blind/review-final/pdf/*    # review PDFs of the made-up sample profiles
+S-PASSWORD .maestro/*.yaml               # "pass=true" in a test assertion, not a password
+P-PKGID README.md                                   # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID app.config.ts                               # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID fdroid/*                                    # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID plugins/with-own-scheme-only.test.ts        # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID plugins/without-dev-client-residue.test.ts  # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID scripts/device-referee.mjs                  # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID scripts/native.sh                           # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID scripts/photo-cache-check.sh                # placeholder app id com.tim.*: the identifier changes before the first store release
+P-PKGID scripts/release-extra.sh                    # placeholder app id com.tim.*: the identifier changes before the first store release

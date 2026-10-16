@@ -1,0 +1,7 @@
+# v1.1 F2 device check helper: the EN example (name "Alex Morgan") in the app.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: ../subflows/seed.yaml
+    env:
+      FIXTURE: example-en

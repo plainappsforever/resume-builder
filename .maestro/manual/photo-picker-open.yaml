@@ -1,0 +1,31 @@
+# v1.1 F2 device check (scripts/photo-cache-check.sh; not part of the full suite): empty app, Profile → Choose photo →
+# the SYSTEM picker → tap the newest photo (MAESTRO_PICK_X/MAESTRO_PICK_Y from the shell, % of the screen) → the photo shows in the profile.
+appId: ${APP_ID}
+---
+- runFlow: ../subflows/reset.yaml
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: photo-choose
+- tapOn:
+    id: photo-choose
+- extendedWaitUntil:
+    notVisible:
+      id: photo-choose
+    timeout: 20000
+- waitForAnimationToEnd:
+    timeout: 5000
+- takeScreenshot: picker
+- tapOn:
+    point: ${MAESTRO_PICK_X},${MAESTRO_PICK_Y}
+- runFlow:
+    when:
+      visible: "Add|Done|Hinzufügen|Fertig"
+    commands:
+      - tapOn: "Add|Done|Hinzufügen|Fertig"
+- extendedWaitUntil:
+    visible:
+      id: photo-preview
+    timeout: 30000

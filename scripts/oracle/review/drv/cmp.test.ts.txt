@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import { compareReadback, readInputFromPdfjs, readInputFromText, itemsToLayout } from '@/readback/compare';
+const S = process.env.RB_S as string;
+// input: cmp_inputs.json = [{name, expectedLines, pdfjs?, pdfkit?, bytes}]
+test('cmp dump', () => {
+  const inputs = JSON.parse(fs.readFileSync(`${S}/${process.env.RB_IN || 'cmp_inputs.json'}`, 'utf8'));
+  const out = inputs.map((c: any) => {
+    const r: any = { name: c.name };
+    if (c.pdfjs) {
+      const x = compareReadback(c.expectedLines, readInputFromPdfjs(c.pdfjs, c.bytes ?? 0), 0);
+      r.pdfjs = { pass: x.pass, words: x.words, moved: x.lines.moved.map((l) => l.index), split: x.lines.split.map((l) => l.index), spaced: x.spacedLetters, gaps: x.wideGaps.length, missing: x.missing.length };
+      r.pdfjsLines = c.pdfjs.pages.map((p: any, i: number) => itemsToLayout(p.items, i + 1).lines);
+    }
+    if (c.pdfkit) {
+      const x = compareReadback(c.expectedLines, readInputFromText('Apple PDFKit', c.pdfkit, c.bytes ?? 0), 0);
+      r.pdfkit = { pass: x.pass, words: x.words, moved: x.lines.moved.map((l) => l.index), split: x.lines.split.map((l) => l.index), spaced: x.spacedLetters, gaps: x.wideGaps.length, missing: x.missing.length };
+    }
+    if (c.lines) {
+      const x = compareReadback(c.expectedLines, readInputFromText('synthetic', [c.lines.join('\n')], 0), 0);
+      r.synthetic = { pass: x.pass, words: x.words, moved: x.lines.moved.map((l) => l.index), split: x.lines.split.map((l) => l.index), spaced: x.spacedLetters, gaps: x.wideGaps.length, missing: x.missing.length };
+    }
+    return r;
+  });
+  fs.writeFileSync(`${S}/${process.env.RB_OUT || 'cmp_engine.json'}`, JSON.stringify(out));
+});

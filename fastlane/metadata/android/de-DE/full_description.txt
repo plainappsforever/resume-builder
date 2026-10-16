@@ -1,0 +1,33 @@
+Ein Profil pflegen, für jede Stelle einen passenden Lebenslauf machen. Als PDF mit echtem, markierbarem Text exportieren und sehen, was die App beim Zurücklesen fand. Alles bleibt auf deinem Handy: kein Konto, keine Werbung, kein Wasserzeichen, kein Abo, keine Begrenzung.
+
+Ein Profil, viele Lebensläufe
+Angaben, Stationen, Ausbildung, Kenntnisse und Sprachen einmal eintragen. Für jede Stelle machst du aus dem Profil einen Lebenslauf: Einträge und Stichpunkte ein- oder ausblenden, umsortieren, einen Stichpunkt nur für diesen Lebenslauf umformulieren. Eine neue Station im Profil erscheint in jedem Lebenslauf, als neu markiert. Gefällt dir eine Änderung, übernimmst du sie ins Profil.
+
+Stellenanzeige einfügen
+Füge den Text einer Anzeige ein. Die App listet Wörter und Wendungen daraus mit Häufigkeit und Textstelle und zeigt, welche dein Lebenslauf enthält, mit anderen Worten enthält oder nicht enthält. Bei einem fehlenden Begriff nennt sie dir ausgeblendete Einträge deines Profils, die ihn enthalten; mit einem Tipp nimmst du sie auf. Keine Punktzahl, keine Prozentangabe: Du siehst jedes Wort und warum es in der Liste steht. Nichts verlässt dein Handy.
+
+Ein PDF, das du prüfen kannst
+Jedes PDF entsteht auf deinem Handy mit echtem Text, nicht als Bild von Text. Gleich nach dem Export liest die App die Datei mit einem quelloffenen PDF-Leser zurück und zeigt das Ergebnis: gefundene Wörter und Zeilen, ob die Zeilen in der richtigen Reihenfolge ankamen, Seitenzahl und Dateigröße. Das ist, was ein Leser gefunden hat: Die Wörter sind echter Text in sinnvoller Reihenfolge. Verglichen werden Wörter, nicht jedes Satzzeichen; prüfe E-Mail-Adresse und Links im PDF also selbst. Wie das System eines Arbeitgebers eine Datei in Felder sortiert, ist nicht bekannt, und die App tut nicht so, als wüsste sie es. Kann die Rücklesung nicht laufen, steht dort „nicht geprüft“ statt eines Bestanden.
+
+Strukturprüfung mit Quellen
+Fünfzehn Prüfungen betrachten Name und Kontaktdaten, Abschnittstitel, Daten, Stichpunkte, Foto, Sonderzeichen, Links, Dateigröße und mehr. Jede sagt, was sie angesehen hat und woher die Regel kommt (Hilfeseite eines Softwareherstellers oder allgemeiner Rat, so gekennzeichnet), und führt dich zur Stelle zum Ändern. Nur ein fehlender Name hält einen Export auf.
+
+Vorlagen und Layout
+Sechs einspaltige Vorlagen (Classic, Modern, Compact, Executive, Lebenslauf, Plain) ohne Tabellen und ohne Inhalt in Kopf- oder Fußzeilen. A4 oder Letter, Schriftgröße, Ränder, Abstände, „Auf eine Seite bringen“ mit einem Tipp, optionales Foto nach deutscher Art, deutsche oder englische Daten und Überschriften je Lebenslauf.
+
+Anschreiben
+Schreibe ein Anschreiben im gleichen Stil für eine Firma und eine Ansprechperson und exportiere es über denselben PDF- und Rücklese-Weg.
+
+Hilfe
+Aktionsverben und Stichpunkt-Beispiele auf Deutsch und Englisch, eine Erklärung, was ATS bedeutet, und wie Prüfungen und Stichwort-Abgleich funktionieren.
+
+Deine Daten
+Eine Sicherungsdatei anlegen und auf einem anderen Handy wiederherstellen, den Lebenslauf als reinen Text für Formulare kopieren, einen früheren Export erneut teilen oder alle Daten löschen. Die Sicherungsdatei ist lesbarer Text, nicht verschlüsselt, und enthält deine persönlichen Angaben: bewahre sie sicher auf. Die App enthält keinen Netzwerkcode und keine Internet-Berechtigung. Daten verlassen dein Handy nur, wenn du selbst eine Datei teilst oder druckst. Die App schaltet die automatische App-Sicherung des Handys ab.
+
+Sprachen
+Deutsch und Englisch; die App folgt deinem Handy. Jeder Lebenslauf kann deutsch oder englisch sein.
+
+In dieser Version nicht enthalten
+- Kein KI-Schreiben und keine Cloud: Die App formuliert deinen Text nicht um.
+- Kein Import eines vorhandenen Lebenslaufs (PDF, Word oder LinkedIn) und kein Word-Export.
+- Keine Bewerbungsverwaltung, keine Punktzahl und kein Versprechen, dass das System eines Arbeitgebers deine Datei liest: Wie es eingestellt ist, weiß niemand außer dem Hersteller.

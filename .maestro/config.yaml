@@ -1,0 +1,7 @@
+# Flows share one simulator and one database, so run them sequentially. Every flow sets its own preconditions
+# (V1_PLAN rule 14: dev links resumebuilder-dev://debug/reset and debug/seed?fixture=<name>, see CLAUDE.md).
+# Flows: zero-prompt, profile-create, version-tailor, master-update, example-data, autosave-kill, german-ui, photo, sqlite-probe, engine-probe, entry-undo, version-new (P4).
+flows:
+  - "*"
+executionOrder:
+  continueOnFailure: true

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import { extractKeywords } from '@/engine/keywords/extract';
+const S = process.env.RB_S as string;
+test('extract dump', () => {
+  const out: any = {};
+  for (const f of fs.readdirSync(`${S}/ads`).filter((f) => f.endsWith('.txt'))) {
+    const x = extractKeywords(fs.readFileSync(`${S}/ads/${f}`, 'utf8'));
+    out[f.replace('.txt', '')] = { lang: x.language, kw: x.keywords.map((k) => [k.term, k.tf, k.inRequirements, k.inDictionary]) };
+  }
+  fs.writeFileSync(`${S}/extract_engine.json`, JSON.stringify(out));
+});

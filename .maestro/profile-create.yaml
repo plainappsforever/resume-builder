@@ -1,0 +1,149 @@
+# SPEC section 7 flow 1: first resume from nothing - details, an experience entry with bullets, education, skills,
+# then a version. Precondition: empty app.
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- tapOn:
+    id: start-profile
+- tapOn:
+    id: profile-name
+- inputText: Sam Rivera
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: profile-headline
+- inputText: Warehouse Supervisor
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: profile-email
+- inputText: sam@example.com
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/add-section.yaml
+    env:
+      KIND: experience
+- assertVisible:
+    id: section-screen
+- tapOn:
+    id: add-entry
+- tapOn:
+    id: entry-title
+- inputText: Shift Lead
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-organization
+- inputText: Northwind Freight
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-start-month
+- inputText: "3"
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-start-year
+- inputText: "2020"
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-current
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-add
+- tapOn:
+    id: bullet-add
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-0
+- tapOn:
+    id: bullet-text-0
+- inputText: Led a team of 12 pickers
+- runFlow: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-add
+- tapOn:
+    id: bullet-add
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-1
+- tapOn:
+    id: bullet-text-1
+- inputText: Cut late shipments by 30 percent
+- runFlow: subflows/kb.yaml
+- runFlow: subflows/back.yaml
+- assertVisible: "Shift Lead.*"
+- runFlow: subflows/back.yaml
+- runFlow:
+    file: subflows/add-section.yaml
+    env:
+      KIND: education
+- tapOn:
+    id: add-entry
+- tapOn:
+    id: entry-title
+- inputText: Logistics Certificate
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: entry-organization
+- inputText: Lakeshore College
+- runFlow: subflows/kb.yaml
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- runFlow:
+    file: subflows/add-section.yaml
+    env:
+      KIND: skills
+- tapOn:
+    id: add-entry
+- tapOn:
+    id: entry-title
+- inputText: Software
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: bullet-paste
+- tapOn:
+    id: bullet-paste-input
+- inputText: "- Excel"
+- pressKey: Enter
+- inputText: "- SAP"
+- pressKey: Enter
+- inputText: "- Forklift licence"
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: bullet-paste-add
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-2
+- assertVisible:
+    id: bullet-text-2
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- assertVisible: ".*Sam Rivera.*"
+- assertVisible: ".*Warehouse Supervisor.*"
+- tapOn:
+    id: new-version
+- tapOn:
+    id: create-version
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-title-1
+- assertVisible: "Shift Lead"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-title-2
+- assertVisible: "Logistics Certificate"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: entry-title-3
+- assertVisible: "Software"

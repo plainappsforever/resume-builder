@@ -1,0 +1,48 @@
+# P5 (F6): Export → Print opens the system print dialog with the PDF; closing it is a cancel, not an error, and the
+# app is back on the resume with the read-back of that PDF. Precondition: the EN example (version 1 = General).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- tapOn:
+    id: export-print
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible:
+            text: "Printer"
+          timeout: 30000
+      - assertVisible:
+          text: "Page 1 of 1"
+      - tapOn:
+          text: "Close"
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible:
+            text: "(Save as PDF|Select a printer|All printers.*|Copies.*)"
+          timeout: 30000
+      - back
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 15000
+- assertNotVisible:
+    id: export-note
+- assertVisible:
+    id: readback-headline
+    text: "Read back with pdf.js.*all \\d+ lines in the right order.*"

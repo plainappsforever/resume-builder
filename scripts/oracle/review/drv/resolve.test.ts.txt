@@ -1,0 +1,8 @@
+import fs from 'node:fs';
+import { resolveVersion, toRenderModel } from '@/engine/resolve';
+const S = process.env.RB_S as string;
+test('dump resolve', () => {
+  const cases = JSON.parse(fs.readFileSync(`${S}/resolve_cases.json`, 'utf8'));
+  const out = cases.map((c: any) => { const r = resolveVersion(c.master, c.state); return { resolved: r, render: toRenderModel(c.master, r) }; });
+  fs.writeFileSync(`${S}/resolve_engine.json`, JSON.stringify(out));
+});

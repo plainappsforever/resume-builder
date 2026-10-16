@@ -1,0 +1,106 @@
+# v1.1 F11 (REVIEW_V1 #11) on a RELEASE build: Back up now (share sheet), then Restore through the SYSTEM file picker.
+# Precondition (scripts/release-extra.sh): a backup file in the app's own format (the EN example, written by
+# src/db/backup-fixture.test.ts) in the device's files — iOS "On My iPhone", Android Downloads. Fresh install, no dev link.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: start-profile
+    timeout: 90000
+- tapOn:
+    id: tab-settings
+# iOS treats a control just below the fold as visible (CLAUDE.md gotcha): scroll it to the centre unconditionally
+- scrollUntilVisible:
+    element:
+      id: settings-data
+    centerElement: true
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: settings-data
+# the backup itself: the share sheet opens with the file
+- extendedWaitUntil:
+    visible:
+      id: backup-now
+    timeout: 15000
+- tapOn:
+    id: backup-now
+- runFlow:
+    file: ../subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: data-screen
+      WHAT: ".*"
+- assertVisible:
+    id: backup-message
+    text: "Backup file ready: Resume-Builder-Backup-\\d{4}-\\d{2}-\\d{2}\\.json"
+# restore through the system picker
+- tapOn:
+    id: restore-pick
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - extendedWaitUntil:
+          visible: "Browse"
+          timeout: 20000
+      - tapOn: "Browse"
+      - waitForAnimationToEnd:
+          timeout: 3000
+      # the picker reopens where it was last (e.g. iCloud Drive): Browse again goes to Locations, then On My iPhone
+      - runFlow:
+          when:
+            notVisible: "On My iPhone"
+          commands:
+            - tapOn: "Browse"
+            - waitForAnimationToEnd:
+                timeout: 3000
+      - runFlow:
+          when:
+            visible: "Locations"
+          commands:
+            - tapOn: "On My iPhone"
+      - extendedWaitUntil:
+          visible: "On My iPhone"
+          timeout: 20000
+      - waitForAnimationToEnd:
+          timeout: 3000
+      # the file's tile (its label is not addressable by text in the picker)
+      - tapOn:
+          point: 18%,29%
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - extendedWaitUntil:
+          visible: "Resume-Builder-Backup-Example.*"
+          timeout: 20000
+      - tapOn: "Resume-Builder-Backup-Example.*"
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: restore-counts
+- assertVisible:
+    id: restore-counts
+    text: "Profile of Alex Morgan · \\d+ sections · \\d+ entries · 2 resumes · 0 cover letters"
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: restore-confirm
+- tapOn:
+    id: restore-confirm
+- extendedWaitUntil:
+    visible:
+      id: restore-message
+      text: "Restored: .*"
+    timeout: 30000
+- runFlow: ../subflows/back.yaml
+- tapOn:
+    id: tab-home
+- extendedWaitUntil:
+    visible:
+      id: version-card-2
+    timeout: 15000
+- assertVisible: ".*Alex Morgan.*"

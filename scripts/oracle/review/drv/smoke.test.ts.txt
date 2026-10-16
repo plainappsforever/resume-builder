@@ -1,0 +1,2 @@
+import { resolve } from '@/engine/resolve';
+test('smoke', () => { expect(typeof resolve).toBe('function'); });

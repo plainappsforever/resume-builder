@@ -1,0 +1,9 @@
+# P7: store screenshots (EN) on a DEVELOPMENT build with Metro running (seeds through a dev link). The dev build prints a debug line under the
+# Preview and Export tabs; screenshots-release-en.yaml (a Release build, fresh install) has none. Output: takeScreenshot files in the run folder.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: ../subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- runFlow: en-tour.yaml

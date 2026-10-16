@@ -1,0 +1,87 @@
+/**
+ * @jest-environment node
+ */
+import fs from 'node:fs';
+import { createTestDb } from '../../../../test/node-sqlite-db';
+import { buildBackup, parseBackup, serializeBackup } from '@/data/backup';
+import { readBackupData, restoreBackupData } from '@/db/backup';
+import { openDatabase, LATEST_VERSION } from '@/db/migrations';
+import { seedMaster } from '@/db/seed';
+import { SAMPLE_PROFILES } from '@/engine/content/sample-profiles';
+import { createVersion, deleteVersion } from '@/db/versions';
+import { addExport } from '@/db/exports';
+import { loadMaster } from '@/db/load';
+import { withTransaction } from '@/db/tx';
+import { addSection } from '@/db/sections';
+import { updateProfile } from '@/db/profile';
+
+const T = Date.UTC(2026, 9, 1);
+const APP = { name: 'RB', version: '1', schema: LATEST_VERSION };
+async function fresh() { const db = createTestDb(); await openDatabase(db); return db; }
+const dump = async (db: any) => JSON.stringify(await readBackupData(db));
+
+test('restore probes', async () => {
+  const src = await fresh();
+  await seedMaster(src, SAMPLE_PROFILES.de.master, T);
+  const v = await createVersion(src, { name: 'X' }, T + 2);
+  await addExport(src, { versionId: v, coverLetterId: null, kind: 'resume_pdf', filePath: 'exports/v1/3/a.pdf', fileName: 'a.pdf', pageCount: 1, bytes: 1, snapshotJson: '{}', readbackJson: null } as any, T + 3);
+  const good = buildBackup(await readBackupData(src), null, APP, new Date(0));
+  const target = await fresh();
+  await seedMaster(target, SAMPLE_PROFILES.en.master, T + 5);
+  const before = await dump(target);
+  const results: any[] = [];
+  const mut = (name: string, f: (b: any) => void, raw?: string) => {
+    const b = JSON.parse(serializeBackup(good)); f(b);
+    return { name, text: raw ?? JSON.stringify(b) };
+  };
+  const cases = [
+    mut('good', () => {}),
+    mut('truncated', () => {}, serializeBackup(good).slice(0, 500)),
+    mut('month 13', (b) => { b.data.entries[0].start_date = '2019-13'; }),
+    mut('month 00', (b) => { b.data.entries[0].start_date = '2019-00'; b.data.entries[0].end_date = null; }),
+    mut('year 1000', (b) => { b.data.entries[0].start_date = '1000'; }),
+    mut('end before start', (b) => { b.data.entries[0].start_date = '2020'; b.data.entries[0].end_date = '2010'; b.data.entries[0].is_current = 0; }),
+    mut('file_path traversal', (b) => { b.data.exports[0].file_path = '../../Library/LocalDatabase/app.db'; }),
+    mut('file_path absolute', (b) => { b.data.exports[0].file_path = '/etc/hosts'; }),
+    mut('lone surrogate', (b) => { b.data.profile[0].full_name = 'A\ud800B'; }),
+    mut('NUL char', (b) => { b.data.profile[0].full_name = 'A\u0000B'; }),
+    mut('float id', (b) => { b.data.sections[0].id = 1.5; }),
+    mut('negative position', (b) => { b.data.sections[0].position = -5; }),
+    mut('settings theme bogus', (b) => { b.data.settings.push({ key: 'theme', value: 'purple' }); }),
+    mut('style_json array', (b) => { b.data.versions[0].style_json = '[]'; }),
+    mut('extra key __proto__', (b) => { b.data.entries[0].extra_json = '{"__proto__":"x"}'; }),
+    mut('newer', (b) => { b.version = 2; }),
+    mut('schema newer', (b) => { b.app.schema = 99; }),
+  ];
+  for (const c of cases) {
+    const p = parseBackup(c.text);
+    let restore: string = 'not attempted';
+    if (p.ok) {
+      try { await restoreBackupData(target, p.backup, null); restore = 'ok'; } catch (e: any) { restore = 'threw: ' + e.message; }
+    }
+    const after = await dump(target);
+    results.push({ name: c.name, parse: p.ok ? 'ok' : p.error, restore, changed: after !== before });
+    // put target back
+    const back = parseBackup(JSON.stringify(buildBackup(JSON.parse(before), null, APP, new Date(0))));
+    if (back.ok) await restoreBackupData(target, back.backup, null);
+  }
+  // dirty read: a read during a transaction that later fails
+  const db = await fresh();
+  let seen = -1;
+  const t = withTransaction(db, async (tx) => {
+    await tx.runAsync("INSERT INTO sections (kind, position) VALUES ('custom', 0)");
+    await new Promise((r) => setTimeout(r, 20));
+    throw new Error('boom');
+  }).catch(() => 'rolled back');
+  await new Promise((r) => setTimeout(r, 5));
+  seen = (await loadMaster(db)).sections.length;
+  await t;
+  const finalCount = (await loadMaster(db)).sections.length;
+  // overlapping write survives a failing transaction
+  const db2 = await fresh();
+  const t2 = withTransaction(db2, async (tx) => { await tx.runAsync("INSERT INTO sections (kind, position) VALUES ('custom', 0)"); await new Promise((r) => setTimeout(r, 20)); throw new Error('x'); }).catch(() => 0);
+  const w = addSection(db2, 'skills'); const w2 = updateProfile(db2, { fullName: 'Z' }, 1);
+  await Promise.all([t2, w, w2]);
+  const secs2 = (await loadMaster(db2)).sections.length; const name2 = (await loadMaster(db2)).profile.fullName;
+  fs.writeFileSync(`${process.env.RB_S}/restore_probe.json`, JSON.stringify({ results, dirtyRead: { seenDuringTx: seen, afterRollback: finalCount }, overlap: { sections: secs2, name: name2 } }, null, 1));
+});

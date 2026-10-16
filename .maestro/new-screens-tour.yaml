@@ -1,0 +1,156 @@
+# P6 (L10): a tour of the screens added in P6 — Job, Check, cover letter, Help, Data, About — asserting that their key controls
+# can be reached, with a screenshot of each. Runs at normal size in the suite; the P6 "large text" pass runs it again with the
+# phone's font size raised (Android: adb shell settings put system font_scale 1.5; iOS: simctl ui <udid> content_size
+# accessibility-medium) and the screenshots are looked at. Precondition: the EN example.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- runFlow:
+    file: subflows/open-version.yaml
+    env:
+      ID: 2
+      TAB: job
+- extendedWaitUntil:
+    visible:
+      id: job-ad
+    timeout: 15000
+- takeScreenshot: tour-job-top
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: job-filter-missing
+- runFlow:
+    when:
+      platform: iOS
+    file: subflows/kb.yaml
+- runFlow:
+    when:
+      platform: iOS
+    file: subflows/kb.yaml
+- takeScreenshot: tour-job-filters
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: kw-pin-operations
+- takeScreenshot: tour-job-card
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- runFlow:
+    file: subflows/open-version.yaml
+    env:
+      ID: 2
+      TAB: check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 15000
+- takeScreenshot: tour-check-top
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C4
+- takeScreenshot: tour-check-bottom
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- runFlow:
+    file: subflows/open-version.yaml
+    env:
+      ID: 2
+      TAB: content
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: version-cover-letter
+- tapOn:
+    id: version-cover-letter
+- extendedWaitUntil:
+    visible:
+      id: cover-screen
+    timeout: 15000
+- takeScreenshot: tour-cover-top
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: cover-example-experienced
+- takeScreenshot: tour-cover-examples
+- tapOn:
+    id: cover-example-experienced
+- runFlow:
+    when:
+      platform: iOS
+    file: subflows/kb.yaml
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: cover-delete
+- takeScreenshot: tour-cover-letter
+- tapOn:
+    id: cover-delete
+- tapOn: Delete
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: home-help
+- tapOn:
+    id: home-help
+    point: 50%,12%
+- extendedWaitUntil:
+    visible:
+      id: help-screen
+    timeout: 15000
+- takeScreenshot: tour-help
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: help-evidence
+- tapOn:
+    id: help-evidence
+- extendedWaitUntil:
+    visible:
+      id: evidence-greenhouse
+    timeout: 15000
+- takeScreenshot: tour-evidence
+- runFlow: subflows/back.yaml
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- extendedWaitUntil:
+    visible:
+      id: backup-now
+    timeout: 15000
+- takeScreenshot: tour-data-top
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- takeScreenshot: tour-data-delete
+- runFlow: subflows/back.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-about
+- tapOn:
+    id: settings-about
+- extendedWaitUntil:
+    visible:
+      id: about-screen
+    timeout: 15000
+- takeScreenshot: tour-about

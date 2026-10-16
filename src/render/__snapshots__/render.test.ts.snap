@@ -1,0 +1,1377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page, style and determinism classic HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Merriweather', 'Times New Roman', serif;font-size:10pt;line-height:1.35;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.35;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.hd{text-align:center;}
+.name{font-size:1.9em;}
+.h{font-size:1em;color:#1A1A1A;border-bottom:0.6pt solid #1A1A1A;padding-bottom:1pt;}
+</style></head><body class="t-classic">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<p class="contact">Geburtsdatum: 03.06.1992 · Staatsangehörigkeit: deutsch</p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">KURZPROFIL</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">BERUFSERFAHRUNG</h2>
+<div class="e">
+<p class="eh"><b>Teamassistenz Vertrieb</b>, Fuldatal Maschinenbau GmbH, Kassel</p>
+<p class="dt"><i>01/2020 – heute</i></p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Sachbearbeiterin Einkauf</b>, Hessenland Bürobedarf KG, Kassel</p>
+<p class="dt"><i>08/2016 – 12/2019</i></p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><b>Aushilfe im Verkauf</b>, Bäckerei Sonnenkorn, Baunatal</p>
+<p class="dt"><i>09/2013 – 07/2016</i></p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">AUSBILDUNG</h2>
+<div class="e">
+<p class="eh"><b>Ausbildung zur Kauffrau für Büromanagement</b>, IHK Kassel-Marburg</p>
+<p class="dt"><i>08/2013 – 07/2016</i></p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">KENNTNISSE</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SPRACHEN</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism classic HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Merriweather', 'Times New Roman', serif;font-size:10pt;line-height:1.35;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.35;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.hd{text-align:center;}
+.name{font-size:1.9em;}
+.h{font-size:1em;color:#1A1A1A;border-bottom:0.6pt solid #1A1A1A;padding-bottom:1pt;}
+</style></head><body class="t-classic">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">SUMMARY</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">EXPERIENCE</h2>
+<div class="e">
+<p class="eh"><b>Operations Coordinator</b>, Harbourline Logistics, Milwaukee, WI</p>
+<p class="dt"><i>Apr 2021 – Present</i></p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Customer Service Team Lead</b>, BrightCart, Milwaukee, WI</p>
+<p class="dt"><i>Feb 2018 – Mar 2021</i></p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><b>Barista</b>, Corner Roast Café, Madison, WI</p>
+<p class="dt"><i>Sep 2016 – Jan 2018</i></p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">PROJECTS</h2>
+<div class="e">
+<p class="eh"><b>Late delivery analysis</b></p>
+<p class="dt"><i>2023</i></p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">VOLUNTEERING</h2>
+<div class="e">
+<p class="eh"><b>Route planning volunteer</b>, Lakeside Food Bank</p>
+<p class="dt"><i>2022 – Present</i></p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">EDUCATION</h2>
+<div class="e">
+<p class="eh"><b>Associate Degree in Business Administration</b>, Milwaukee Area Technical College</p>
+<p class="dt"><i>2014 – 2016</i></p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SKILLS</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">LANGUAGES</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism compact HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Lato', Arial, sans-serif;font-size:9.5pt;line-height:1.25;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.25;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{font-size:1.6em;}
+.s{margin-top:0.7em;}
+.e{margin-top:0.35em;}
+.h{font-size:1em;color:#2E5E4E;border-bottom:0.5pt solid #999999;margin-bottom:0.25em;}
+.b{margin-top:0;}
+</style></head><body class="t-compact">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<p class="contact">Geburtsdatum: 03.06.1992 · Staatsangehörigkeit: deutsch</p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">KURZPROFIL</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">BERUFSERFAHRUNG</h2>
+<div class="e">
+<p class="eh"><b>Teamassistenz Vertrieb</b> · Fuldatal Maschinenbau GmbH · Kassel · 01/2020 – heute</p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Sachbearbeiterin Einkauf</b> · Hessenland Bürobedarf KG · Kassel · 08/2016 – 12/2019</p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><b>Aushilfe im Verkauf</b> · Bäckerei Sonnenkorn · Baunatal · 09/2013 – 07/2016</p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">AUSBILDUNG</h2>
+<div class="e">
+<p class="eh"><b>Ausbildung zur Kauffrau für Büromanagement</b> · IHK Kassel-Marburg · 08/2013 – 07/2016</p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">KENNTNISSE</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SPRACHEN</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism compact HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Lato', Arial, sans-serif;font-size:9.5pt;line-height:1.25;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.25;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{font-size:1.6em;}
+.s{margin-top:0.7em;}
+.e{margin-top:0.35em;}
+.h{font-size:1em;color:#2E5E4E;border-bottom:0.5pt solid #999999;margin-bottom:0.25em;}
+.b{margin-top:0;}
+</style></head><body class="t-compact">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">SUMMARY</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">EXPERIENCE</h2>
+<div class="e">
+<p class="eh"><b>Operations Coordinator</b> · Harbourline Logistics · Milwaukee, WI · Apr 2021 – Present</p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Customer Service Team Lead</b> · BrightCart · Milwaukee, WI · Feb 2018 – Mar 2021</p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><b>Barista</b> · Corner Roast Café · Madison, WI · Sep 2016 – Jan 2018</p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">PROJECTS</h2>
+<div class="e">
+<p class="eh"><b>Late delivery analysis</b> · 2023</p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">VOLUNTEERING</h2>
+<div class="e">
+<p class="eh"><b>Route planning volunteer</b> · Lakeside Food Bank · 2022 – Present</p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">EDUCATION</h2>
+<div class="e">
+<p class="eh"><b>Associate Degree in Business Administration</b> · Milwaukee Area Technical College · 2014 – 2016</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SKILLS</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">LANGUAGES</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism executive HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'EB Garamond', 'Times New Roman', serif;font-size:11pt;line-height:1.345;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.345;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.hd{text-align:center;}
+.name{font-size:2.4em;font-weight:400;}
+.h{font-size:0.92em;color:#5A2A4A;border-bottom:0.5pt solid #5A2A4A;padding-bottom:1pt;}
+.em{font-style:italic;}
+.photo{width:28mm;}
+</style></head><body class="t-executive">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<p class="contact">Geburtsdatum: 03.06.1992 · Staatsangehörigkeit: deutsch</p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">KURZPROFIL</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">BERUFSERFAHRUNG</h2>
+<div class="e">
+<p class="eh"><b>Teamassistenz Vertrieb</b></p>
+<p class="em">Fuldatal Maschinenbau GmbH · Kassel · 01/2020 – heute</p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Sachbearbeiterin Einkauf</b></p>
+<p class="em">Hessenland Bürobedarf KG · Kassel · 08/2016 – 12/2019</p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><b>Aushilfe im Verkauf</b></p>
+<p class="em">Bäckerei Sonnenkorn · Baunatal · 09/2013 – 07/2016</p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">AUSBILDUNG</h2>
+<div class="e">
+<p class="eh"><b>Ausbildung zur Kauffrau für Büromanagement</b></p>
+<p class="em">IHK Kassel-Marburg · 08/2013 – 07/2016</p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">KENNTNISSE</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SPRACHEN</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism executive HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'EB Garamond', 'Times New Roman', serif;font-size:11pt;line-height:1.345;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.345;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.hd{text-align:center;}
+.name{font-size:2.4em;font-weight:400;}
+.h{font-size:0.92em;color:#5A2A4A;border-bottom:0.5pt solid #5A2A4A;padding-bottom:1pt;}
+.em{font-style:italic;}
+.photo{width:28mm;}
+</style></head><body class="t-executive">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">SUMMARY</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">EXPERIENCE</h2>
+<div class="e">
+<p class="eh"><b>Operations Coordinator</b></p>
+<p class="em">Harbourline Logistics · Milwaukee, WI · Apr 2021 – Present</p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Customer Service Team Lead</b></p>
+<p class="em">BrightCart · Milwaukee, WI · Feb 2018 – Mar 2021</p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><b>Barista</b></p>
+<p class="em">Corner Roast Café · Madison, WI · Sep 2016 – Jan 2018</p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">PROJECTS</h2>
+<div class="e">
+<p class="eh"><b>Late delivery analysis</b></p>
+<p class="em">2023</p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">VOLUNTEERING</h2>
+<div class="e">
+<p class="eh"><b>Route planning volunteer</b></p>
+<p class="em">Lakeside Food Bank · 2022 – Present</p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">EDUCATION</h2>
+<div class="e">
+<p class="eh"><b>Associate Degree in Business Administration</b></p>
+<p class="em">Milwaukee Area Technical College · 2014 – 2016</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SKILLS</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">LANGUAGES</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism lebenslauf HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Source Sans 3', Arial, sans-serif;font-size:10.5pt;line-height:1.464;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.464;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{color:#1F4E79;}
+.h{font-size:1.15em;color:#1F4E79;border-bottom:0.75pt solid #1F4E79;padding-bottom:1.5pt;}
+.photo{width:32mm;}
+</style></head><body class="t-lebenslauf">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">Persönliche Daten</h2>
+<p class="t">Geburtsdatum: 03.06.1992</p>
+<p class="t">Staatsangehörigkeit: deutsch</p>
+</div></section>
+<section class="s"><div class="k">
+<h2 class="h">Kurzprofil</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">Berufserfahrung</h2>
+<div class="e">
+<p class="eh"><span class="d">01/2020 – heute</span> <b>Teamassistenz Vertrieb</b>, Fuldatal Maschinenbau GmbH, Kassel</p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><span class="d">08/2016 – 12/2019</span> <b>Sachbearbeiterin Einkauf</b>, Hessenland Bürobedarf KG, Kassel</p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><span class="d">09/2013 – 07/2016</span> <b>Aushilfe im Verkauf</b>, Bäckerei Sonnenkorn, Baunatal</p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Ausbildung</h2>
+<div class="e">
+<p class="eh"><span class="d">08/2013 – 07/2016</span> <b>Ausbildung zur Kauffrau für Büromanagement</b>, IHK Kassel-Marburg</p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Kenntnisse</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Sprachen</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism lebenslauf HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Source Sans 3', Arial, sans-serif;font-size:10.5pt;line-height:1.464;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.464;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{color:#1F4E79;}
+.h{font-size:1.15em;color:#1F4E79;border-bottom:0.75pt solid #1F4E79;padding-bottom:1.5pt;}
+.photo{width:32mm;}
+</style></head><body class="t-lebenslauf">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">Summary</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">Experience</h2>
+<div class="e">
+<p class="eh"><span class="d">Apr 2021 – Present</span> <b>Operations Coordinator</b>, Harbourline Logistics, Milwaukee, WI</p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><span class="d">Feb 2018 – Mar 2021</span> <b>Customer Service Team Lead</b>, BrightCart, Milwaukee, WI</p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><span class="d">Sep 2016 – Jan 2018</span> <b>Barista</b>, Corner Roast Café, Madison, WI</p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Projects</h2>
+<div class="e">
+<p class="eh"><span class="d">2023</span> <b>Late delivery analysis</b></p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Volunteering</h2>
+<div class="e">
+<p class="eh"><span class="d">2022 – Present</span> <b>Route planning volunteer</b>, Lakeside Food Bank</p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Education</h2>
+<div class="e">
+<p class="eh"><span class="d">2014 – 2016</span> <b>Associate Degree in Business Administration</b>, Milwaukee Area Technical College</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Skills</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Languages</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism modern HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Inter', Arial, sans-serif;font-size:10pt;line-height:1.35;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.35;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{color:#1F4E79;}
+.h{font-size:1.15em;color:#1F4E79;border-bottom:1pt solid #1F4E79;padding-bottom:1.5pt;}
+.photo{width:26mm;}
+</style></head><body class="t-modern">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<p class="contact">Geburtsdatum: 03.06.1992 · Staatsangehörigkeit: deutsch</p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">Kurzprofil</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">Berufserfahrung</h2>
+<div class="e">
+<p class="eh"><b>Teamassistenz Vertrieb</b> · Fuldatal Maschinenbau GmbH · Kassel · 01/2020 – heute</p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Sachbearbeiterin Einkauf</b> · Hessenland Bürobedarf KG · Kassel · 08/2016 – 12/2019</p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><b>Aushilfe im Verkauf</b> · Bäckerei Sonnenkorn · Baunatal · 09/2013 – 07/2016</p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Ausbildung</h2>
+<div class="e">
+<p class="eh"><b>Ausbildung zur Kauffrau für Büromanagement</b> · IHK Kassel-Marburg · 08/2013 – 07/2016</p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Kenntnisse</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Sprachen</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism modern HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Inter', Arial, sans-serif;font-size:10pt;line-height:1.35;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.35;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+.name{color:#1F4E79;}
+.h{font-size:1.15em;color:#1F4E79;border-bottom:1pt solid #1F4E79;padding-bottom:1.5pt;}
+.photo{width:26mm;}
+</style></head><body class="t-modern">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">Summary</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">Experience</h2>
+<div class="e">
+<p class="eh"><b>Operations Coordinator</b> · Harbourline Logistics · Milwaukee, WI · Apr 2021 – Present</p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Customer Service Team Lead</b> · BrightCart · Milwaukee, WI · Feb 2018 – Mar 2021</p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><b>Barista</b> · Corner Roast Café · Madison, WI · Sep 2016 – Jan 2018</p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Projects</h2>
+<div class="e">
+<p class="eh"><b>Late delivery analysis</b> · 2023</p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Volunteering</h2>
+<div class="e">
+<p class="eh"><b>Route planning volunteer</b> · Lakeside Food Bank · 2022 – Present</p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Education</h2>
+<div class="e">
+<p class="eh"><b>Associate Degree in Business Administration</b> · Milwaukee Area Technical College · 2014 – 2016</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Skills</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">Languages</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism plain HTML snapshot (EN + DE examples, fonts elided): de 1`] = `
+"<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Miriam Kowalski</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Noto Sans', Arial, sans-serif;font-size:10.5pt;line-height:1.402;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.402;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+body{color:#000000;}
+.name{font-size:1.7em;}
+.h{font-size:1em;}
+</style></head><body class="t-plain">
+<div class="hd">
+<h1 class="name">Miriam Kowalski</h1>
+<p class="headline">Kauffrau für Büromanagement</p>
+<p class="contact"><span class="nw">Kassel</span> · <span class="nw">miriam.kowalski@example.de</span> · <span class="nw">+49 561 123456</span></p>
+<p class="contact">Geburtsdatum: 03.06.1992 · Staatsangehörigkeit: deutsch</p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">KURZPROFIL</h2>
+<p class="t">Kauffrau für Büromanagement mit acht Jahren Erfahrung in Assistenz und Sachbearbeitung. Ich halte Abläufe und Termine im Griff, damit sich andere auf ihre Arbeit konzentrieren können.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">BERUFSERFAHRUNG</h2>
+<div class="e">
+<p class="eh"><b>Teamassistenz Vertrieb</b>, Fuldatal Maschinenbau GmbH, Kassel, 01/2020 – heute</p>
+<p class="b">• Terminplanung und Kalenderführung für die Vertriebsleitung und 6 Außendienstler</p>
+<p class="b">• Vorbereitung von Besprechungen und Protokollführung bei 12 Kundenterminen pro Monat</p>
+<p class="b">• Bearbeitung von rund 80 Bestellungen pro Monat in SAP</p>
+<p class="b">• Einführung einer digitalen Ablage, die 20 Papierordner ersetzte</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Sachbearbeiterin Einkauf</b>, Hessenland Bürobedarf KG, Kassel, 08/2016 – 12/2019</p>
+<p class="b">• Rechnungsprüfung für 300 Eingangsrechnungen pro Monat</p>
+<p class="b">• Pflege der Lieferantendaten für 450 Artikel in SAP MM</p>
+</div>
+<div class="e">
+<p class="eh"><b>Aushilfe im Verkauf</b>, Bäckerei Sonnenkorn, Baunatal, 09/2013 – 07/2016</p>
+<p class="b">• Beratung von bis zu 150 Kundinnen und Kunden pro Schicht</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">AUSBILDUNG</h2>
+<div class="e">
+<p class="eh"><b>Ausbildung zur Kauffrau für Büromanagement</b>, IHK Kassel-Marburg, 08/2013 – 07/2016</p>
+<p class="x">Note: 1,9</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">KENNTNISSE</h2>
+<div class="e">
+<p class="eh"><b>EDV:</b> MS Office (sehr gut, besonders Excel und Outlook), SAP MM und SD, DATEV Unternehmen online</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Arbeitsweise:</b> Organisationstalent, Diskretion, Zehnfingersystem</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SPRACHEN</h2>
+<div class="e">
+<p class="eh"><b>Deutsch</b> – Muttersprache</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Englisch</b> – B2</p>
+</div>
+<div class="e">
+<p class="eh"><b>Polnisch</b> – B1</p>
+</div>
+</section>
+</body></html>"
+`;
+
+exports[`page, style and determinism plain HTML snapshot (EN + DE examples, fonts elided): en 1`] = `
+"<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Alex Morgan</title><style>
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@font-face{…}
+@page{size:210mm 297mm;margin:18mm;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;font-family:'Noto Sans', Arial, sans-serif;font-size:10.5pt;line-height:1.402;color:#1A1A1A;hyphens:none;-webkit-hyphens:none;overflow-wrap:break-word;-webkit-text-size-adjust:100%;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0;}
+h1,h2,p{margin:0;padding:0;font-size:inherit;font-weight:inherit;}
+b{font-weight:700;}
+.name{font-size:2em;font-weight:700;line-height:1.402;}
+.headline{font-size:1.15em;margin-top:0.15em;}
+.contact{margin-top:0.3em;}
+.s{margin-top:1em;}
+.pb{break-before:page;page-break-before:always;}
+.h{font-weight:700;font-size:1.1em;margin-bottom:0.35em;break-after:avoid;page-break-after:avoid;}
+.k,.e{break-inside:avoid;page-break-inside:avoid;}
+.e{margin-top:0.55em;}
+.k>.e:first-of-type,.k>.e:first-child{margin-top:0;}
+.t,.x{margin-top:0.12em;}
+.dt{font-style:italic;}
+.b{padding-left:1.1em;text-indent:-1.1em;margin-top:0.12em;}
+.photo{float:right;width:30mm;height:auto;margin:0 0 3mm 5mm;}
+.nw{white-space:nowrap;}
+.clr{clear:both;}
+body{color:#000000;}
+.name{font-size:1.7em;}
+.h{font-size:1em;}
+</style></head><body class="t-plain">
+<div class="hd">
+<h1 class="name">Alex Morgan</h1>
+<p class="headline">Operations Coordinator</p>
+<p class="contact"><span class="nw">Milwaukee, WI</span> · <span class="nw">alex.morgan@example.com</span> · <span class="nw">+1 555 0142</span> · <span class="nw">linkedin.com/in/alex-morgan-example</span></p>
+<div class="clr"></div>
+</div>
+<section class="s"><div class="k">
+<h2 class="h">SUMMARY</h2>
+<p class="t">Operations coordinator with six years in logistics and customer service. I like turning messy processes into simple routines and measuring whether they work.</p>
+</div></section>
+<section class="s">
+<div class="k">
+<h2 class="h">EXPERIENCE</h2>
+<div class="e">
+<p class="eh"><b>Operations Coordinator</b>, Harbourline Logistics, Milwaukee, WI, Apr 2021 – Present</p>
+<p class="b">• Built 6 Excel dashboards that the depot uses every morning to plan 40 delivery routes</p>
+<p class="b">• Reduced late deliveries from 9% to 4% by changing the loading order and cut-off times</p>
+<p class="b">• Coordinated 3 carriers and 12 drivers during the peak season</p>
+<p class="b">• Introduced a weekly review of delivery data with the dispatch team</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Customer Service Team Lead</b>, BrightCart, Milwaukee, WI, Feb 2018 – Mar 2021</p>
+<p class="b">• Led a team of 7 agents handling 400 orders and complaints a day</p>
+<p class="b">• Raised customer satisfaction from 86% to 93% in 18 months</p>
+<p class="b">• Wrote 30 help articles that reduced repeat contacts by 15%</p>
+</div>
+<div class="e">
+<p class="eh"><b>Barista</b>, Corner Roast Café, Madison, WI, Sep 2016 – Jan 2018</p>
+<p class="b">• Served up to 250 customers per shift</p>
+<p class="b">• Trained 4 new baristas</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">PROJECTS</h2>
+<div class="e">
+<p class="eh"><b>Late delivery analysis</b>, 2023</p>
+<p class="t">Personal project with public city traffic data.</p>
+<p class="b">• Analyzed 18 months of delivery times with SQL and Power BI and found 3 avoidable delay patterns</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">VOLUNTEERING</h2>
+<div class="e">
+<p class="eh"><b>Route planning volunteer</b>, Lakeside Food Bank, 2022 – Present</p>
+<p class="b">• Planned weekly routes for 9 volunteer drivers serving 120 families</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">EDUCATION</h2>
+<div class="e">
+<p class="eh"><b>Associate Degree in Business Administration</b>, Milwaukee Area Technical College, 2014 – 2016</p>
+</div>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">SKILLS</h2>
+<div class="e">
+<p class="eh"><b>Tools:</b> Excel (pivot tables, XLOOKUP), Power BI, SQL (basic), Google Workspace</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Methods:</b> Process improvement, Lean basics, Stakeholder communication</p>
+</div>
+</section>
+<section class="s">
+<div class="k">
+<h2 class="h">LANGUAGES</h2>
+<div class="e">
+<p class="eh"><b>English</b> – Native</p>
+</div>
+</div>
+<div class="e">
+<p class="eh"><b>Spanish</b> – Conversational</p>
+</div>
+</section>
+</body></html>"
+`;

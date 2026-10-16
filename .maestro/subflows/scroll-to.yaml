@@ -1,0 +1,15 @@
+# Scrolls down until env TARGET (an id) is on screen; does nothing when it already is (scrollUntilVisible swipes first,
+# which can drag a control away or bounce a short list).
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      notVisible:
+        id: ${TARGET}
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: ${TARGET}
+          timeout: 25000
+          speed: 60
+- waitForAnimationToEnd

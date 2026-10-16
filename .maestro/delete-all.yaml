@@ -1,0 +1,114 @@
+# P6 (F12, SPEC §11): "Delete all data" asks twice and each Cancel leaves everything; then the app is empty again (welcome
+# screen) and nothing of the profile is left. Precondition: the EN example, with one exported PDF (a file to delete).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- tapOn:
+    id: export-copy-text
+- extendedWaitUntil:
+    visible:
+      id: export-note
+    timeout: 15000
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: history-open
+- tapOn:
+    id: history-open
+- extendedWaitUntil:
+    visible:
+      id: history-total
+    timeout: 15000
+- assertVisible:
+    id: history-total
+    text: "1 files · .*"
+- tapOn:
+    id: history-delete-0
+- tapOn: Delete
+- extendedWaitUntil:
+    visible:
+      id: history-empty
+    timeout: 15000
+- assertVisible:
+    id: history-total
+    text: "0 files · .*"
+- runFlow: subflows/back.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- assertVisible: "Delete all data\\?"
+- assertVisible: "This erases your profile, 2 resumes and 0 cover letters from this phone.*"
+- tapOn: Cancel
+- tapOn:
+    id: delete-all
+- tapOn: Continue
+- assertVisible: "Really delete everything\\?"
+- tapOn: Cancel
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- assertVisible:
+    id: version-card-1
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- tapOn: Continue
+- tapOn: Delete everything
+# v1.1: the Data screen's delete hint is longer; the message under the button can be below the fold
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-message
+- extendedWaitUntil:
+    visible:
+      id: delete-message
+      text: "All data deleted."
+    timeout: 30000
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-home
+- extendedWaitUntil:
+    visible:
+      id: start-profile
+    timeout: 15000
+- assertNotVisible:
+    id: version-card-1
+- tapOn:
+    id: tab-profile
+- assertVisible:
+    id: profile-name
+- assertNotVisible: ".*Alex Morgan.*"

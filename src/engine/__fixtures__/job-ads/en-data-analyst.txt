@@ -1,0 +1,26 @@
+Data Analyst
+Tallow & Pine Insurance, Chicago IL (hybrid)
+
+Tallow & Pine is a mid-size insurer. The analytics team answers questions from claims, pricing and marketing, and we are hiring a Data Analyst to help us move from spreadsheets to reliable dashboards.
+
+What you'll do:
+• Write SQL queries against our Snowflake data warehouse
+• Build and maintain dashboards in Tableau and Power BI
+• Clean and model data with Python (pandas) and dbt
+• Run statistical analysis and A/B testing for marketing campaigns
+• Present findings to stakeholders in clear, short reports
+• Improve data quality checks with the data engineering team
+
+Requirements:
+• 2+ years as a data analyst or in business intelligence
+• Advanced SQL and Excel (pivot tables, lookups)
+• Experience with Tableau or Power BI
+• Python for data analysis (pandas, Jupyter)
+• Good grasp of statistics and regression analysis
+• Clear communication with non-technical stakeholders
+
+Nice to have:
+• Experience with dbt or Airflow
+• Insurance or finance background
+
+Benefits: hybrid work, 401(k) match, training budget.

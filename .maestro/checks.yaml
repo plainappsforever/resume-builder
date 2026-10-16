@@ -1,0 +1,226 @@
+# P6 (F8, A6): the Check tab. Photo warning ("your choice"), an abbreviated job title (Sr. → Senior), an invalid e-mail,
+# the Fix links (to the Content tab and to the profile) and C15 filled by the read-back of a real export on the phone. v1.1: a template change afterwards marks C11/C12/C15 "not checked" (D95).
+# Precondition: the EN example (version 1 = General, Modern template).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- openLink: resumebuilder-dev://debug/photo
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 30000
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+# switch the photo on in the Design tab, then look at the Check tab
+- tapOn:
+    id: version-tabs-design
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: design-photo
+- tapOn:
+    id: design-photo
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: version-tabs-check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C2
+- assertVisible:
+    id: check-status-C2
+    text: OK
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C4
+- assertVisible:
+    id: check-status-C4
+    text: Your choice
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-source-C4
+- assertVisible: "Source: Greenhouse help center and Workday.*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C11
+- assertVisible:
+    id: check-status-C11
+    text: Not checked yet
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C15
+- assertVisible:
+    id: check-status-C15
+    text: Not checked yet
+# an abbreviated job title in this resume's headline
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: version-tabs-content
+- tapOn:
+    id: version-headline
+    point: 95%,50%
+- eraseText: 60
+- inputText: Sr. Operations Coordinator
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: version-tabs-check
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-fix-C6-0
+- assertVisible: "Write “Senior” instead of “Sr\\.”.*"
+- assertVisible: "Profile: Job title you are aiming for"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-fix-C6-0
+- assertVisible:
+    id: check-fix-C6-0
+- tapOn:
+    id: check-fix-C6-0
+# Fix opens the Content tab with the headline field
+- extendedWaitUntil:
+    visible:
+      id: version-headline
+    timeout: 15000
+- assertVisible: "Sr\\. Operations Coordinator"
+# an e-mail address that is not one: Fix leads to the profile
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-profile
+- tapOn:
+    id: profile-email
+    point: 95%,50%
+- eraseText: 60
+- inputText: alex.morgan@example
+- runFlow: subflows/kb.yaml
+- tapOn:
+    id: tab-home
+- tapOn:
+    id: version-card-1
+- tapOn:
+    id: version-tabs-check
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C14
+- assertVisible:
+    id: check-status-C14
+    text: Needs attention
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-fix-C14-0
+- assertVisible: "“alex.morgan@example” does not look like an e-mail address."
+- tapOn:
+    id: check-fix-C14-0
+- extendedWaitUntil:
+    visible:
+      id: profile-email
+    timeout: 15000
+- assertVisible: "alex.morgan@example"
+# a real export fills C15 (read back on the phone) and C11 / C12
+- tapOn:
+    id: tab-home
+- tapOn:
+    id: version-card-1
+- tapOn:
+    id: version-tabs-check
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-go-export-C15
+- tapOn:
+    id: check-go-export-C15
+- runFlow: subflows/to-top.yaml
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: version-tabs-check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C11
+- assertVisible:
+    id: check-status-C11
+    text: OK
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C12
+- assertVisible:
+    id: check-status-C12
+    text: OK
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-status-C15
+- assertVisible:
+    id: check-status-C15
+    text: OK
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-note-C15
+- assertVisible:
+    id: check-note-C15
+    text: "The last PDF was read back with pdf.js: every word, in the right order."
+# v1.1 (D95): after a change (another template) the export-based checks no longer claim a result for the old PDF
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: version-tabs-design
+- extendedWaitUntil:
+    visible:
+      id: tab-body-design
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: template-plain
+- tapOn:
+    id: template-plain
+- runFlow: subflows/to-top.yaml
+- tapOn:
+    id: version-tabs-check
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: check-note-C15
+- assertVisible:
+    id: check-note-C15
+    text: "Not checked: the last PDF was made before your latest changes.*"

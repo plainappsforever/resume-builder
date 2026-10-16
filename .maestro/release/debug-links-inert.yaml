@@ -1,0 +1,32 @@
+# P7 (rule 15): in a RELEASE build the dev links do nothing. With data present (run after another release flow), the preview scheme's
+# debug/reset and debug/seed?fixture=empty links land on Home and the profile is still there. Not part of `*`.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 60000
+- openLink: resumebuilder-preview://debug/reset
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: home-screen
+    timeout: 20000
+- assertVisible:
+    id: profile-card
+- openLink: resumebuilder-preview://debug/seed?fixture=empty
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: home-screen
+    timeout: 20000
+- assertVisible:
+    id: profile-card
+- assertNotVisible:
+    id: start-profile

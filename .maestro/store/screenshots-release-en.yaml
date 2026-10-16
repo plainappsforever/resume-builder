@@ -1,0 +1,18 @@
+# P7: store screenshots (EN) on a RELEASE build (scripts/e2e.sh <platform> preview .maestro/store/screenshots-release-en.yaml): fresh install,
+# the example from the welcome screen, no debug lines. Output: takeScreenshot files in the run folder.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-1
+    timeout: 40000
+- runFlow: en-tour.yaml

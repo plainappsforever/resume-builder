@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+import { textSegments, phraseTokens, normalizeTerm } from '@/engine/keywords/tokenize';
+import { countInAd, extractKeywords } from '@/engine/keywords/extract';
+const S = process.env.RB_S as string;
+test('kw dump', () => {
+  const probes: string[] = JSON.parse(fs.readFileSync(`${S}/kw_probes.json`, 'utf8'));
+  const out = probes.map((p) => ({ p, seg: textSegments(p).map((s) => s.map((t: any) => t.lower ?? t.text ?? t)), phrase: phraseTokens(p), norm: normalizeTerm(p) }));
+  fs.writeFileSync(`${S}/kw_engine_tokens.json`, JSON.stringify(out, null, 1));
+});

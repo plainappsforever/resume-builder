@@ -1,0 +1,92 @@
+# v1.1 F11 (REVIEW_V1 #11) on a RELEASE build: the EN example, one exported PDF, then Settings → Backup and data → Delete all
+# data with both confirmations: the app is empty again (welcome screen, no resume, no example name, 0 files in the history).
+# A Release build has no dev-backup folder, so this is the real wipe. Fresh install, no dev link.
+appId: ${APP_ID}
+---
+- launchApp:
+    stopApp: true
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: look-at-example
+    timeout: 90000
+- tapOn:
+    id: look-at-example
+- extendedWaitUntil:
+    visible:
+      id: version-card-1
+    timeout: 40000
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "1"
+      TAB: export
+- extendedWaitUntil:
+    visible:
+      id: export-share
+    timeout: 15000
+- tapOn:
+    id: export-share
+- runFlow:
+    file: ../subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 60000
+- runFlow: ../subflows/back.yaml
+- tapOn:
+    id: tab-settings
+# iOS treats a control just below the fold as visible (CLAUDE.md gotcha): scroll it to the centre unconditionally
+- scrollUntilVisible:
+    element:
+      id: settings-data
+    centerElement: true
+    timeout: 20000
+    speed: 60
+- tapOn:
+    id: settings-data
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- assertVisible: "Delete all data\\?"
+- tapOn: Continue
+- assertVisible: "Really delete everything\\?"
+- tapOn: Delete everything
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: delete-message
+- extendedWaitUntil:
+    visible:
+      id: delete-message
+      text: "All data deleted."
+    timeout: 30000
+- runFlow:
+    file: ../subflows/scroll-to.yaml
+    env:
+      TARGET: history-open
+- tapOn:
+    id: history-open
+- extendedWaitUntil:
+    visible:
+      id: history-total
+    timeout: 15000
+- assertVisible:
+    id: history-total
+    text: "0 files · .*"
+- runFlow: ../subflows/back.yaml
+- runFlow: ../subflows/back.yaml
+- tapOn:
+    id: tab-home
+- extendedWaitUntil:
+    visible:
+      id: start-profile
+    timeout: 15000
+- assertNotVisible:
+    id: version-card-1
+- assertNotVisible: ".*Alex Morgan.*"

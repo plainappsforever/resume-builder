@@ -1,0 +1,42 @@
+# P5 (A9): an export lands in the history; "Share again" sends the identical stored file (dev label: its size on disk
+# equals the size recorded at export, not re-rendered). Precondition: the EN example (version 1 = General).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- tapOn:
+    id: export-share
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: history-reshare-0
+- assertVisible:
+    id: history-row-0
+    text: ".*1 page · \\d+ KB · read back completely"
+- tapOn:
+    id: history-reshare-0
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: reshare-debug
+- assertVisible:
+    id: reshare-debug
+    text: "RESHARE Alex-Morgan-Resume.pdf bytes=(\\d+) stored=\\1 rerendered=false"

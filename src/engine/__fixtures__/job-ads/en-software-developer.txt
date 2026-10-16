@@ -1,0 +1,27 @@
+Software Developer (TypeScript / Node.js)
+Lumen Grid Labs — Hybrid, Austin TX
+
+We build scheduling software that helps 4,000 clinics plan their staff. Our product team of 25 ships small changes every day and cares about code quality, accessibility and calm on-call weeks.
+
+Your responsibilities:
+- Build features end to end with TypeScript, React and Node.js
+- Design REST APIs and evolve our PostgreSQL data model
+- Write unit tests and integration tests; keep our CI/CD pipeline green
+- Review code with your peers and pair on hard problems
+- Improve performance and accessibility of the web app
+
+Requirements:
+- 3+ years of professional software development experience
+- Strong TypeScript and JavaScript skills
+- Experience with React and Node.js in production
+- Solid SQL knowledge, ideally PostgreSQL
+- Familiar with Docker and cloud services (AWS preferred)
+- Comfortable with Git, code reviews and agile teams (Scrum or Kanban)
+
+Nice to have:
+- GraphQL, Kubernetes or Terraform
+- Experience with test automation (Jest, Playwright)
+- Interest in healthcare software
+
+Benefits:
+Remote-friendly hybrid setup, learning budget, 4 weeks of vacation and health insurance.

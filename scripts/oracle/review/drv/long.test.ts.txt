@@ -1,0 +1,19 @@
+import fs from 'node:fs';
+import { renderHtml } from '@/render/index';
+import { modelFor, FIXTURES } from '@/render/__fixtures__/models';
+test('long', () => {
+  const D = `${process.env.RB_S}/long`; const jobs: any[] = []; const exp: any = {};
+  for (const t of ['modern', 'lebenslauf', 'compact'] as const) for (const paper of ['a4', 'letter'] as const) {
+    const m: any = modelFor(FIXTURES['sample-en'].draft, 'en', { template: t, style: { paper } });
+    const e = m.sections.find((s: any) => s.kind === 'experience').entries[0];
+    e.bullets = Array.from({ length: 70 }, (_, i) => ({ id: 5000 + i, text: `Bullet number ${i + 1}: coordinated ${i + 3} deliveries per shift across the regional hub and reduced errors by ${i % 9 + 1}%` }));
+    e.description = 'Ünïcödé çhéck: Straße, Œuvre, naïve façade, ½ – “quotes” ‘single’ … and a long URL www.example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+    const r = renderHtml(m);
+    const name = `${t}-${paper}`;
+    fs.writeFileSync(`${D}/${name}.html`, r.html);
+    exp[name] = r.expectedLines;
+    jobs.push({ html: `${D}/${name}.html`, pdf: `${D}/${name}.pdf`, width: r.page.widthPt, height: r.page.heightPt, margin: r.page.marginPt });
+  }
+  fs.writeFileSync(`${D}/jobs.json`, JSON.stringify(jobs));
+  fs.writeFileSync(`${D}/expected.json`, JSON.stringify(exp));
+});

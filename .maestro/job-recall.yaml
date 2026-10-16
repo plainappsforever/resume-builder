@@ -1,0 +1,65 @@
+# P6 device check (A4): the keyword engine on the reviewer's 4 job ads runs on the phone's Hermes — the dev screen shows the
+# per-ad result and the total (60 of 61 must-haves in the top 25; not blind any more) — and the real Job tab lists a German
+# ad's keywords with umlauts and compounds. Precondition: the EN example (version 2 gets the German IT-admin ad).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-center.yaml
+    env:
+      TARGET: debug-recall
+- tapOn:
+    id: debug-recall
+- extendedWaitUntil:
+    visible:
+      id: recall-verdict
+      text: "RECALL 60/61"
+    timeout: 60000
+- runFlow: subflows/back.yaml
+- openLink: resumebuilder-dev://debug/ad?name=de-it-admin&version=2
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 30000
+- tapOn:
+    id: version-card-2
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-job
+- extendedWaitUntil:
+    visible:
+      id: job-ad
+    timeout: 20000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: job-summary
+- assertVisible:
+    id: job-summary
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-term-windows-server
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-term-active-directory
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-term-vmware
+- runFlow:
+    file: subflows/find.yaml
+    env:
+      TARGET: kw-term-powershell

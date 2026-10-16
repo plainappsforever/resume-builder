@@ -1,0 +1,42 @@
+# P7: store screenshots (DE): German UI and the German example. See screenshots-en.yaml for how to run it.
+appId: ${APP_ID}
+---
+- runFlow:
+    file: ../subflows/reset.yaml
+- openLink: resumebuilder-dev://debug/lang?lang=de
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: Profil anlegen
+    timeout: 90000
+- openLink: resumebuilder-dev://debug/seed?fixture=example-de
+- tapOn:
+    text: Open
+    optional: true
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 30000
+# bringing the app to the front again (not through a link) removes iOS's "back to the other app" crumb from the status bar
+- launchApp:
+    stopApp: false
+- extendedWaitUntil:
+    visible:
+      id: profile-card
+    timeout: 90000
+- takeScreenshot: 01-home-de
+- runFlow:
+    file: ../subflows/open-version.yaml
+    env:
+      ID: "1"
+      TAB: content
+- takeScreenshot: 02-content-de
+- tapOn:
+    id: version-tabs-check
+- extendedWaitUntil:
+    visible:
+      id: check-summary
+    timeout: 15000
+- takeScreenshot: 03-check-de

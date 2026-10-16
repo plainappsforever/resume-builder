@@ -1,0 +1,103 @@
+# P5 (A8, SPEC 5.8): a resume made slightly too long by its own settings (largest text, widest margins, airiest
+# spacing) is brought back to one page by "Fit to one page" and kept; a resume that cannot fit reports
+# "Still N pages - about N lines too long" and keeps the user's settings on "Back to my settings".
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-design
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: design-size
+- tapOn:
+    id: design-size-2
+- tapOn:
+    id: design-margins-2
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: design-spacing
+- tapOn:
+    id: design-spacing-2
+# back to the top (scrollUntilVisible stops with the tabs under the translucent iOS header)
+- swipe:
+    start: 50%, 35%
+    end: 50%, 90%
+- swipe:
+    start: 50%, 35%
+    end: 50%, 90%
+- swipe:
+    start: 50%, 35%
+    end: 50%, 90%
+- waitForAnimationToEnd
+- tapOn:
+    id: version-tabs-preview
+- extendedWaitUntil:
+    visible:
+      id: tab-body-preview
+    timeout: 10000
+- extendedWaitUntil:
+    visible:
+      id: preview-info
+    timeout: 30000
+- assertVisible:
+    id: preview-info
+    text: "2 pages.*"
+- tapOn:
+    id: fit-one-page
+- extendedWaitUntil:
+    visible:
+      id: fit-result
+    timeout: 60000
+- assertVisible:
+    id: fit-result
+    text: "Fits on one page with: .*"
+- tapOn:
+    id: fit-keep
+- extendedWaitUntil:
+    visible:
+      id: preview-info
+      text: "1 page.*"
+    timeout: 30000
+# too long: the stress profile cannot reach one page
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: long-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-preview
+- extendedWaitUntil:
+    visible:
+      id: preview-info
+    timeout: 30000
+- tapOn:
+    id: fit-one-page
+- extendedWaitUntil:
+    visible:
+      id: fit-result
+    timeout: 60000
+- assertVisible:
+    id: fit-result
+    text: "Still \\d pages . about \\d+ lines too long\\. Smallest settings tried: .*"
+- tapOn:
+    id: fit-cancel
+- extendedWaitUntil:
+    visible:
+      id: fit-one-page
+    timeout: 30000

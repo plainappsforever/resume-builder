@@ -1,0 +1,16 @@
+# Closes the keyboard on both platforms. iOS: `hideKeyboard` is unreliable, so a tap on the empty right margin of the screen
+# (outside any control; the screens are ScrollViews with keyboardShouldPersistTaps) blurs the focused field. Android:
+# `hideKeyboard` (a Back press would otherwise be eaten by the open keyboard).
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          point: 99%,35%
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard

@@ -1,0 +1,115 @@
+# v1.1 F9 (REVIEW_V1 #9, D96): after a restore the export files are gone (not in backups, D50). "Share again" makes the PDF again
+# from the saved copy, READS IT BACK and the row says so ("Made again on …"); the verdict shown is the new file's.
+# Precondition: the EN example; the restore goes through the dev button (the real picker: .maestro/release/backup-release.yaml).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: version-card-1
+- extendedWaitUntil:
+    visible:
+      id: version-screen
+    timeout: 15000
+- tapOn:
+    id: version-tabs-export
+- tapOn:
+    id: export-share
+- runFlow:
+    file: subflows/dismiss-share.yaml
+    env:
+      WHAT: PDF Document
+- extendedWaitUntil:
+    visible:
+      id: readback-headline
+    timeout: 30000
+- runFlow: subflows/back.yaml
+- tapOn:
+    id: tab-settings
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: settings-data
+- tapOn:
+    id: settings-data
+- extendedWaitUntil:
+    visible:
+      id: backup-now
+    timeout: 15000
+- tapOn:
+    id: backup-now
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: data-screen
+      WHAT: ".*"
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-all
+- tapOn:
+    id: delete-all
+- tapOn: Continue
+- tapOn: Delete everything
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: delete-message
+- extendedWaitUntil:
+    visible:
+      id: delete-message
+      text: "All data deleted."
+    timeout: 30000
+- runFlow: subflows/to-top.yaml
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-dev-last
+- tapOn:
+    id: restore-dev-last
+- extendedWaitUntil:
+    visible:
+      id: restore-summary
+    timeout: 15000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: restore-confirm
+- tapOn:
+    id: restore-confirm
+- extendedWaitUntil:
+    visible:
+      id: restore-message
+      text: "Restored: .*"
+    timeout: 30000
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: history-open
+- tapOn:
+    id: history-open
+- extendedWaitUntil:
+    visible:
+      id: history-reshare-0
+    timeout: 15000
+- assertNotVisible:
+    id: history-remade-0
+- tapOn:
+    id: history-reshare-0
+- runFlow:
+    file: subflows/dismiss-share-on.yaml
+    env:
+      SCREEN: history-screen
+      WHAT: ".*"
+- extendedWaitUntil:
+    visible:
+      id: history-remade-0
+    timeout: 30000
+- assertVisible:
+    id: history-remade-0
+    text: "Made again on .* from the saved copy.*"
+- assertVisible:
+    id: history-row-0
+    text: ".*read back completely.*"

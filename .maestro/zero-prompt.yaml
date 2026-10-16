@@ -1,0 +1,19 @@
+# A11 / D21: first launch shows no dialog, no permission prompt, no onboarding - only the two choices.
+appId: ${APP_ID}
+---
+- runFlow: subflows/reset.yaml
+- assertVisible:
+    id: start-profile
+- assertVisible:
+    id: look-at-example
+- assertNotVisible: "Allow"
+- assertNotVisible: "Don’t Allow"
+- assertNotVisible: "Would Like to"
+- assertNotVisible: "Next"
+- assertNotVisible: "Skip"
+- tapOn:
+    id: tab-settings
+- assertVisible:
+    id: settings-screen
+- assertNotVisible:
+    id: debug-status

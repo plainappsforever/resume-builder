@@ -1,0 +1,14 @@
+# One step back in the navigation stack on both platforms (Maestro's `back` is Android-only; on iOS the header button).
+appId: ${APP_ID}
+---
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          id: BackButton
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - back

@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import { itemsToLayout } from '@/readback/compare';
+test('gaps', () => {
+  const d = JSON.parse(fs.readFileSync(__dirname + '/../../../../src/readback/__fixtures__/proxy-c_layouts.json', 'utf8'));
+  const g = d.pdfjs.pages.map((p: any, i: number) => itemsToLayout(p.items, i + 1).gaps);
+  fs.writeFileSync(`${process.env.RB_S}/gaps_c.json`, JSON.stringify(g));
+});

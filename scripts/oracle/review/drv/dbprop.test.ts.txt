@@ -1,0 +1,101 @@
+/**
+ * @jest-environment node
+ */
+import fs from 'node:fs';
+import { createTestDb } from '../../../../test/node-sqlite-db';
+import { openDatabase } from '@/db/migrations';
+import { addSection, deleteSection, moveSection } from '@/db/sections';
+import { addEntry, deleteEntry, duplicateEntry, moveEntry, updateEntry, restoreEntry, type DeletedEntry } from '@/db/entries';
+import { addBullet, deleteBullet, moveBullet, updateBullet } from '@/db/bullets';
+import { updateProfile } from '@/db/profile';
+import { createVersion, duplicateVersion, deleteVersion, updateVersion } from '@/db/versions';
+import * as VI from '@/db/version-items';
+import { addExport } from '@/db/exports';
+import { loadResolvedVersion } from '@/db/load';
+
+const S = process.env.RB_S as string;
+function rng(seed: number) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 2 ** 32; }; }
+const FIELDS = ['title', 'organization', 'location', 'description'] as const;
+
+async function masterDump(db: any) {
+  const t: any = {};
+  for (const n of ['profile', 'sections', 'entries', 'bullets']) t[n] = await db.getAllAsync(`SELECT * FROM ${n} ORDER BY id`);
+  return JSON.stringify(t);
+}
+
+test('db property dump', async () => {
+  const runs: any[] = [];
+  for (let seed = 1; seed <= Number(process.env.RB_N || 200); seed++) {
+    const r = rng(seed); const pick = <T,>(a: T[]): T => a[Math.floor(r() * a.length)];
+    const db = createTestDb(); await openDatabase(db);
+    let now = 100000; const log: any[] = []; let undo: DeletedEntry | null = null;
+    await updateProfile(db, { fullName: 'N', headline: 'H', summary: 'S' }, now);
+    const ids = async (t: string) => (await db.getAllAsync<{ id: number }>(`SELECT id FROM ${t}`)).map((x) => x.id);
+    for (let step = 0; step < 60; step++) {
+      now += 10;
+      const secs = await ids('sections'), ents = await ids('entries'), buls = await ids('bullets'), vers = await ids('versions');
+      const ops: string[] = ['addSection', 'addEntry', 'addEntry', 'addBullet', 'addBullet', 'createVersion'];
+      if (secs.length) ops.push('moveSection', 'deleteSection');
+      if (ents.length) ops.push('updateEntry', 'moveEntry', 'duplicateEntry', 'deleteEntry');
+      if (undo) ops.push('restoreEntry');
+      if (buls.length) ops.push('updateBullet', 'moveBullet', 'deleteBullet');
+      if (vers.length) { ops.push('duplicateVersion', 'deleteVersion', 'export', 'headlineOv', 'summaryOv', 'applyProfile', 'updateProfile');
+        if (secs.length) ops.push('vSecInc', 'vSecMove', 'vSecMove', 'vSecTitle', 'vResetSec');
+        if (ents.length) ops.push('vEntInc', 'vEntInc', 'vEntMove', 'vEntMove', 'vEntOv', 'vEntOv', 'vEntOvClear', 'applyEntry', 'seen', 'vResetEnt');
+        if (buls.length) ops.push('vBulInc', 'vBulMove', 'vBulOv', 'vBulOv', 'applyBullet');
+      }
+      const op = pick(ops); let args: any[] = []; let res: any = null; const v = vers.length ? pick(vers) : 0;
+      const before = await masterDump(db);
+      try {
+        switch (op) {
+          case 'addSection': res = await addSection(db, pick(['experience', 'skills', 'custom'] as any)); break;
+          case 'moveSection': args = [pick(secs), Math.floor(r() * 4)]; await moveSection(db, args[0], args[1]); break;
+          case 'deleteSection': args = [pick(secs)]; await deleteSection(db, args[0]); break;
+          case 'addEntry': if (!secs.length) { args = ['skip']; break; } args = [pick(secs), { title: 'E' + step }]; res = await addEntry(db, args[0], args[1], now); break;
+          case 'updateEntry': { const f = pick([...FIELDS]); args = [pick(ents), { [f]: pick(['', 'm' + step, 'same']) }]; res = await updateEntry(db, args[0], args[1], now); break; }
+          case 'moveEntry': args = [pick(ents), Math.floor(r() * 4)]; await moveEntry(db, args[0], args[1]); break;
+          case 'duplicateEntry': args = [pick(ents)]; res = await duplicateEntry(db, args[0], now); break;
+          case 'deleteEntry': args = [pick(ents)]; undo = await deleteEntry(db, args[0]); break;
+          case 'restoreEntry': args = [undo!.entry.id]; await restoreEntry(db, undo!); undo = null; break;
+          case 'addBullet': if (!ents.length) { args = ['skip']; break; } args = [pick(ents), 'b' + step, r() < .3 ? Math.floor(r() * 3) : undefined]; res = await addBullet(db, args[0], args[1], now, args[2]); break;
+          case 'updateBullet': args = [pick(buls), pick(['u' + step, 'same'])]; res = await updateBullet(db, args[0], args[1], now); break;
+          case 'moveBullet': args = [pick(buls), Math.floor(r() * 4)]; await moveBullet(db, args[0], args[1], now); break;
+          case 'deleteBullet': args = [pick(buls)]; await deleteBullet(db, args[0], now); break;
+          case 'updateProfile': args = [{ [pick(['headline', 'summary'])]: 'p' + step }]; await updateProfile(db, args[0], now); break;
+          case 'createVersion': res = await createVersion(db, { name: 'V' }, now); break;
+          case 'duplicateVersion': args = [v]; res = await duplicateVersion(db, v, now); break;
+          case 'deleteVersion': args = [v]; await deleteVersion(db, v); break;
+          case 'export': args = [v]; await addExport(db, { versionId: v, coverLetterId: null, kind: 'plain_text', filePath: null, fileName: 'x', pageCount: null, bytes: null, snapshotJson: '{}', readbackJson: null } as any, now); break;
+          case 'headlineOv': args = [v, pick([null, '', 'ho' + step])]; await updateVersion(db, v, { headlineOverride: args[1] }, now); break;
+          case 'summaryOv': args = [v, pick([null, '', 'so' + step])]; await updateVersion(db, v, { summaryOverride: args[1] }, now); break;
+          case 'applyProfile': args = [v, pick(['headline', 'summary'])]; await VI.applyProfileOverrideToMaster(db, v, args[1], now); break;
+          case 'vSecInc': args = [v, pick(secs), r() < .5]; await VI.setSectionIncluded(db, v, args[1], args[2], now); break;
+          case 'vSecMove': args = [v, pick(secs), Math.floor(r() * 4)]; await VI.moveSectionInVersion(db, v, args[1], args[2], now); break;
+          case 'vSecTitle': args = [v, pick(secs), pick([null, '', ' x ', 'T' + step])]; await VI.setSectionTitleOverride(db, v, args[1], args[2], now); break;
+          case 'vResetSec': args = [v, pick(secs)]; await VI.resetOrderInVersion(db, 'section', v, args[1], now); break;
+          case 'vEntInc': args = [v, pick(ents), r() < .5]; await VI.setEntryIncluded(db, v, args[1], args[2], now); break;
+          case 'vEntMove': args = [v, pick(ents), Math.floor(r() * 4)]; await VI.moveEntryInVersion(db, v, args[1], args[2], now); break;
+          case 'vEntOv': args = [v, pick(ents), pick([...FIELDS]), pick(['', 'o' + step])]; await VI.setEntryOverride(db, v, args[1], args[2], args[3], now); break;
+          case 'vEntOvClear': args = [v, pick(ents), pick([...FIELDS]), null]; await VI.setEntryOverride(db, v, args[1], args[2], null, now); break;
+          case 'applyEntry': args = [v, pick(ents), r() < .5 ? undefined : [pick([...FIELDS])]]; await VI.applyEntryOverrideToMaster(db, v, args[1], args[2], now); break;
+          case 'seen': args = [v, pick(ents)]; await VI.markEntrySeen(db, v, args[1], now); break;
+          case 'vResetEnt': args = [v, pick(ents)]; await VI.resetOrderInVersion(db, 'entry', v, args[1], now); break;
+          case 'vBulInc': args = [v, pick(buls), r() < .5]; await VI.setBulletIncluded(db, v, args[1], args[2], now); break;
+          case 'vBulMove': args = [v, pick(buls), Math.floor(r() * 4)]; await VI.moveBulletInVersion(db, v, args[1], args[2], now); break;
+          case 'vBulOv': args = [v, pick(buls), pick([null, '', '  ', 'ob' + step])]; await VI.setBulletOverride(db, v, args[1], args[2], now); break;
+          case 'applyBullet': args = [v, pick(buls)]; await VI.applyBulletOverrideToMaster(db, v, args[1], now); break;
+        }
+      } catch (e: any) { res = { error: String(e.message || e) }; }
+      const after = await masterDump(db);
+      const versionOnly = op.startsWith('v') || ['seen', 'export', 'headlineOv', 'summaryOv', 'createVersion', 'duplicateVersion', 'deleteVersion'].includes(op);
+      const resolved: any = {};
+      for (const vid of await ids('versions')) {
+        const rv = await loadResolvedVersion(db, vid);
+        resolved[vid] = { h: rv.headline, s: rv.summary, sec: rv.sections.map((s) => ({ id: s.id, t: s.title, i: s.included, e: s.entries.map((e) => ({ id: e.id, i: e.included, f: FIELDS.map((f) => e[f]), n: e.newSinceExport, c: e.masterChanged, o: e.overridden, b: e.bullets.map((b) => [b.id, b.text, b.included]) })) })) };
+      }
+      log.push({ op, args, res, now, masterTouchedByVersionOp: versionOnly && before !== after, resolved });
+    }
+    runs.push(log);
+  }
+  fs.writeFileSync(`${S}/dbprop_log.json`, JSON.stringify(runs));
+});

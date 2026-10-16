@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+import { extractKeywords } from '@/engine/keywords/extract';
+import { matchKeywords } from '@/engine/keywords/match';
+test('it', () => {
+  const x = extractKeywords(fs.readFileSync(`${process.env.RB_S}/ads2/probe.txt`, 'utf8'));
+  const resolved: any = { headline: 'Office Manager', summary: 'Improved its onboarding; HRs records; goes live; QAs; Java-Entwicklung', sections: [] };
+  const m = matchKeywords(x.keywords.map((k) => ({ term: k.term, tf: k.tf })), resolved);
+  fs.writeFileSync(`${process.env.RB_S}/itprobe.json`, JSON.stringify(m.map((k) => [k.term, k.tf, k.status, k.variantKind])));
+});

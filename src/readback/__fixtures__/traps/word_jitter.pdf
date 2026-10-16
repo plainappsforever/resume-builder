@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 1339 >>
+stream
+BT /F1 11 Tf  50 799.12 Td (Anna) Tj ET
+BT /F1 11 Tf  77.5 800.83 Td (Schmidt) Tj ET
+BT /F1 11 Tf  50 784.63 Td (Data) Tj ET
+BT /F1 11 Tf  77.5 783.41 Td (Analyst) Tj ET
+BT /F1 11 Tf  50 767.99 Td (anna@example.de) Tj ET
+BT /F1 11 Tf  50 751.88 Td (SKILLS) Tj ET
+BT /F1 11 Tf  50 736.36 Td (Python) Tj ET
+BT /F1 11 Tf  50 720.69 Td (SQL) Tj ET
+BT /F1 11 Tf  50 703.03 Td (Tableau) Tj ET
+BT /F1 11 Tf  50 686.87 Td (LANGUAGES) Tj ET
+BT /F1 11 Tf  50 672.81 Td (German) Tj ET
+BT /F1 11 Tf  50 655.84 Td (English) Tj ET
+BT /F1 11 Tf  50 640.63 Td (EXPERIENCE) Tj ET
+BT /F1 11 Tf  50 622.81 Td (Data) Tj ET
+BT /F1 11 Tf  77.5 623.87 Td (Analyst,) Tj ET
+BT /F1 11 Tf  129.4 624.53 Td (Gamma) Tj ET
+BT /F1 11 Tf  163.0 623.35 Td (AG,) Tj ET
+BT /F1 11 Tf  184.4 625.07 Td (2020) Tj ET
+BT /F1 11 Tf  211.9 624.96 Td (-) Tj ET
+BT /F1 11 Tf  221.1 622.87 Td (2024) Tj ET
+BT /F1 11 Tf  50 606.86 Td (Built) Tj ET
+BT /F1 11 Tf  83.6 608.1 Td (dashboards) Tj ET
+BT /F1 11 Tf  147.7 609.05 Td (used) Tj ET
+BT /F1 11 Tf  175.2 607.71 Td (by) Tj ET
+BT /F1 11 Tf  190.5 607.32 Td (300) Tj ET
+BT /F1 11 Tf  211.9 607.81 Td (staff.) Tj ET
+BT /F1 11 Tf  50 590.87 Td (Automated) Tj ET
+BT /F1 11 Tf  108.0 591.33 Td (the) Tj ET
+BT /F1 11 Tf  129.4 591.85 Td (weekly) Tj ET
+BT /F1 11 Tf  169.1 591.99 Td (KPI) Tj ET
+BT /F1 11 Tf  190.5 591.36 Td (report.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001632 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1729
+%%EOF

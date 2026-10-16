@@ -1,0 +1,37 @@
+# SPEC section 10: deleting an entry shows an undo bar for 5 s; Undo brings the entry back in its place (with its bullets).
+# Precondition: the EN example (entry 3 = Barista, in the Experience section 1).
+appId: ${APP_ID}
+---
+- runFlow:
+    file: subflows/seed.yaml
+    env:
+      FIXTURE: example-en
+- tapOn:
+    id: tab-profile
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: section-row-1
+- tapOn:
+    id: section-row-1
+- assertVisible:
+    id: entry-row-3
+- tapOn:
+    id: entry-delete-3
+- assertVisible:
+    id: undo-bar
+- assertNotVisible:
+    id: entry-row-3
+- tapOn:
+    id: undo-action
+- extendedWaitUntil:
+    visible:
+      id: entry-row-3
+    timeout: 10000
+- tapOn:
+    id: entry-row-3
+- runFlow:
+    file: subflows/scroll-to.yaml
+    env:
+      TARGET: bullet-text-1
+- assertVisible: "Trained 4 new baristas"

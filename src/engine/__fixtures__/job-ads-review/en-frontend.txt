@@ -1,0 +1,22 @@
+Frontend Engineer, Accessibility Focus (Remote, EU)
+
+We build booking software for 2,000 dental practices. You join a product squad of six.
+
+What you'll do
+• Build accessible UI components in React and TypeScript
+• Write unit tests with Jest and end-to-end tests with Playwright
+• Review pull requests and pair with backend engineers (Node.js, PostgreSQL)
+• Improve Core Web Vitals and bundle size
+
+Must have:
+• 3+ years of professional React and TypeScript
+• Solid HTML, CSS and WCAG 2.2 knowledge
+• Experience with REST APIs and GraphQL
+• Git, code reviews, CI/CD pipelines (GitHub Actions)
+
+Nice to have:
+• Storybook, design systems, Figma handoff
+• Experience with C# / .NET backends
+• German language skills
+
+Benefits: remote-first, 4-day work week trial, learning budget.
